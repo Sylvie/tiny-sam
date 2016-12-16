@@ -6,5 +6,5 @@ OBJ=hello.o
 %.o: %.c $(DEPS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
-hello: $(OBJ)
+hello.out: $(OBJ)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
