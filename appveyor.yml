@@ -1,9 +1,18 @@
 build_script:
   - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
   - echo %PATH%
-  - ps: Write-Host %PATH*%
+  - ps: Write-Host %PATH%
   - mingw32-make.exe
 
-
-init:
-  - ps: ls C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+deploy:
+  # Deploy to GitHub Releases
+  - provider: GitHub
+    artifact: hello.out
+    draft: false
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
+      appveyor_repo_tag: true       # deploy on tag push only
