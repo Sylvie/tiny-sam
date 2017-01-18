@@ -10,6 +10,8 @@ build_script:
 deploy:
   # Deploy to GitHub Releases
   - provider: GitHub
+    auth_token:
+      secure: 333d1968518b3e046edb496da8bc71f785ace212
     artifact: hello.out
     draft: false
     prerelease: false
