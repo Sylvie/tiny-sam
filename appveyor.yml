@@ -12,7 +12,7 @@ build_script:
 artifacts:
 
 # pushing a single file with "Deployment name" specified
-- path: C:\projects\tiny-sam\src\hello.out
+- path: src\hello.out
   name: hello-appveyor
 
 #---------------------------------#
@@ -23,7 +23,7 @@ deploy:
   - provider: GitHub
     auth_token:
       secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
-    artifact: hello.out
+    artifact: hello-appveyor
     draft: true
     prerelease: false
     on:
