@@ -12,7 +12,7 @@ build_script:
 artifacts:
 
 # pushing a single file with "Deployment name" specified
-- path: tiny-sam\hello.out
+- path: tiny-sam\src\hello.out
   name: hello-appveyor
 
 #---------------------------------#
