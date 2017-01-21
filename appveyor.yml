@@ -1,8 +1,20 @@
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
 build_script:
   - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
   - echo %PATH%
   - ps: Write-Host %PATH%
   - mingw32-make.exe
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+artifacts:
+
+# pushing a single file with "Deployment name" specified
+- path: tiny-sam\hello.out
+  name: hello-appveyor
 
 #---------------------------------#
 #     deployment configuration    #
@@ -13,7 +25,7 @@ deploy:
     auth_token:
       secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
     artifact: hello.out
-    draft: false
+    draft: true
     prerelease: false
     on:
       appveyor_repo_tag: true       # deploy on tag push only
