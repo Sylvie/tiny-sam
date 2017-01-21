@@ -11,7 +11,7 @@ deploy:
   # Deploy to GitHub Releases
   - provider: GitHub
     auth_token:
-      secure: +oX9me7LwQE3LivaZsgF77VyfhhlW9ynaEu+LXhTtDckB0z7h/Vz8hLrYa+2UML1
+      secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
     artifact: hello.out
     draft: false
     prerelease: false
