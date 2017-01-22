@@ -1,13 +1,14 @@
+compiler: gcc
+addons:
+apt:
+sources:
+- ubuntu-toolchain-r-test
+packages:
+- g++-5
+env: COMPILER=g++-5
+
 #sudo: required
 script:
 #  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
-  - gcc --version
+  - g++ --version
   - make
-compiler: gcc
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-5
-env: COMPILER=g++-5
