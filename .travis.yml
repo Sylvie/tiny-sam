@@ -1,13 +1,19 @@
-compiler: gcc
-addons:
-apt:
-sources:
-- ubuntu-toolchain-r-test
-packages:
-- g++-5
-env: COMPILER=g++-5
+# Use new trusty images, should yield newer compilers and packages
+sudo: required
+dist: precise
+language: generic
 
-#sudo: required
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++-5
+
 script:
 #  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
   - g++ --version
