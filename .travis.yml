@@ -3,13 +3,10 @@ sudo: required
 dist: precise
 language: generic
 
-os:
-  - linux
-  - osx
-
 matrix:
   include:
-    - compiler: gcc
+    - os: linux
+      compiler: gcc
       addons:
         apt:
           sources:
@@ -17,6 +14,17 @@ matrix:
           packages:
             - g++-5
       env: COMPILER=g++-5
+
+	- os: osx
+	  compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++
+
 
 script:
   - g++ --version
