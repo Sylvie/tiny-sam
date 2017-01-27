@@ -15,8 +15,8 @@ matrix:
             - g++-5
       env: COMPILER=g++-5
 
-	- os: osx
-	  compiler: gcc
+    - os: osx
+      compiler: gcc
       addons:
         apt:
           sources:
