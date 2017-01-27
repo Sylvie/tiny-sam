@@ -3,6 +3,10 @@ sudo: required
 dist: precise
 language: generic
 
+os:
+  - linux
+  - osx
+
 matrix:
   include:
     - compiler: gcc
