@@ -13,7 +13,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
-            - unittest-cpp
+            - libunittest++-dev
       env: COMPILER=g++-5
 
     - os: osx
