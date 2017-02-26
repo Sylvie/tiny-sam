@@ -11,4 +11,4 @@ resources:
 
 $(builddir)/%.pdf: %.tex
 	echo Hi
-	pdflatex -output-directory=$(builddir) $< 
+	latexmk -pdf -output-directory=$(builddir) $< 
