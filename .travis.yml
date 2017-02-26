@@ -28,4 +28,4 @@ matrix:
 script:
   - g++ --version
   - make CXX=$COMPILER
-  - src/hello.out
+  - build/hello.out
