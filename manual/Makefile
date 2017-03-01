@@ -10,5 +10,5 @@ resources:
 	mkdir -p $(builddir)
 
 $(builddir)/%.pdf: %.tex
-	echo Hi
+	echo Hi $(basename $@)
 	latexmk -pdf -output-directory=$(builddir) $< 
