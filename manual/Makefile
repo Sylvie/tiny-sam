@@ -11,4 +11,5 @@ resources:
 
 $(builddir)/%.pdf: %.tex
 	latexmk -help
+	pdflatex -help
 	latexmk -pdf -output-directory=$(builddir) $< 
