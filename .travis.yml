@@ -7,7 +7,7 @@ matrix:
   include:
     - os: linux
       compiler: gcc
-	  env: COMPILER=g++
+      env: COMPILER=g++
       addons:
         apt:
           sources:
