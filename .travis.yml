@@ -32,4 +32,6 @@ matrix:
 script:
   - g++ --version
   - make CXX=$COMPILER
+  - pwd
+  - ls build/
   - build/hello.out
