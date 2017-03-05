@@ -1,4 +1,4 @@
-builddir=../build/
+builddir=build/
 
 all: resources manual
 
@@ -7,3 +7,6 @@ resources:
 
 manual: 
 	latexmk
+
+clean:
+	rm -fr $(builddir)
