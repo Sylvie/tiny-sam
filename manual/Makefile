@@ -1,15 +1,9 @@
 builddir=../build/
 
-file=manual
-
-target=$(builddir)/$(file).pdf
-
-all: resources $(target)
+all: resources manual
 
 resources:
 	mkdir -p $(builddir)
 
-$(builddir)/%.pdf: %.tex
-	latexmk -help
-	pdflatex -help
-	latexmk -pdf -output-directory=$(builddir) $< 
+manual: 
+	latexmk
