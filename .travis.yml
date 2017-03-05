@@ -33,5 +33,7 @@ script:
   - g++ --version
   - make CXX=$COMPILER
   - pwd
+  - ls
+  - ls -R
   - ls build/
   - build/hello.out
