@@ -1,12 +1,7 @@
-builddir=build/
-
 inputfile=manual.tex
 output=sambadoc
 
-all: resources manual
-
-resources:
-	mkdir -p $(builddir)
+all: manual
 
 manual: $(inputfile)
 	latexmk -jobname=$(output) $(inputfile) -pdf
