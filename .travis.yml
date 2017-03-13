@@ -17,6 +17,7 @@ matrix:
             - texlive-latex-recommended
             - texlive-latex-extra
             - texlive-fonts-recommended
+            - texlive-bibtex-extra
             - chktex
             - latexmk
       env: COMPILER=g++-5
