@@ -1,11 +1,19 @@
 \documentclass{article}
-\usepackage{biblatex}
-\bibliography{bibliography}
+\usepackage[
+    backend=biber,
+    style=authoryear-icomp,
+    sortlocale=en_EN,
+    natbib=true,
+    url=false, 
+    doi=true,
+    eprint=false
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 \begin{document}
 
 \section{Introduction}
 \texttt{tiny-sam} is a simple program to say ``Hello World!'' to everyone.
-The project is built with \texttt{make}\cite{Mecklenburg:2004aa}.
+The project is built with \texttt{make} \citep{Mecklenburg:2004aa}.
 \printbibliography
 \end{document}
