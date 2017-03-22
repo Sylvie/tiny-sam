@@ -14,9 +14,10 @@ matrix:
           packages:
             - g++-5
             - libunittest++-dev
-            - texlive-latex-recommended
             - texlive-latex-extra
+            - texlive-latex-recommended
             - texlive-fonts-recommended
+            - biber
             - texlive-bibtex-extra
             - chktex
             - latexmk
