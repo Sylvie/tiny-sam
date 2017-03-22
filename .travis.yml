@@ -17,7 +17,6 @@ matrix:
             - texlive-latex-extra
             - texlive-latex-recommended
             - texlive-fonts-recommended
-            - biber
             - texlive-bibtex-extra
             - chktex
             - latexmk
