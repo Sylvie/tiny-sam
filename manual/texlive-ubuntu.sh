@@ -54,6 +54,7 @@ tlmgr install ifluatex lm lualibs luaotfload
 # Dependencies other than the core l3build set up, metafont, fontspec and the
 # 'graphics stack' (itself needed by fontspec) are listed below
 tlmgr install --no-depends \
+biber       \
 biblatex    \
 chemformula \
 ctex        \
