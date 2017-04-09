@@ -14,13 +14,12 @@ matrix:
           packages:
             - g++-5
             - libunittest++-dev
-            - texlive-latex-extra
-            - texlive-latex-recommended
-            - texlive-fonts-recommended
-            - texlive-bibtex-extra
-            - biber
-            - chktex
-            - latexmk
+	  install:
+        - source ./manual/texlive-ubuntu.sh
+      cache:
+        directories:
+          - /tmp/texlive
+          - $HOME/.texlive
       env: COMPILER=g++-5
     - os: osx
       compiler: gcc
