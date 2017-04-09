@@ -1,3 +1,5 @@
+# This configuration file is essentially based on work of the project LaTeX3
+# Source: https://github.com/latex3/latex3/
 selected_scheme scheme-infraonly
 TEXDIR /tmp/texlive
 TEXMFCONFIG ~/.texlive/texmf-config

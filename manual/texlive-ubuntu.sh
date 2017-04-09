@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# This script is essentially based on work of the project LaTeX3
+# Source: https://github.com/latex3/latex3/
+
 # This script is used for testing using Travis
 # It is intended to work on their VM set up: Ubuntu 12.04 LTS
 # A minimal current TL is installed adding only the packages that are
@@ -54,47 +57,25 @@ tlmgr install ifluatex lm lualibs luaotfload
 # Dependencies other than the core l3build set up, metafont, fontspec and the
 # 'graphics stack' (itself needed by fontspec) are listed below
 tlmgr install --no-depends \
-biber       \
-biblatex    \
-chemformula \
-ctex        \
-mhchem      \
-siunitx     \
-unicode-math
-tlmgr install --no-depends cjk
-tlmgr install   \
+siunitx       \
+tlmgr install \
 adobemapping  \
 amsfonts      \
 amsmath       \
-chemgreek     \
-cjkpunct      \
-ctablestack   \
+biber         \
+biblatex      \
 ec            \
-environ       \
-etoolbox      \
-fandol        \
-filehook      \
-ifxetex       \
 latexmk       \
 lm-math       \
 logreq        \
-lualatex-math \
-luatexbase    \
-luatexja      \
-ms            \
 pgf           \
 tools         \
-trimspaces    \
-ucharcat      \
 ulem          \
 units         \
 url           \
 xcolor        \
-xecjk         \
 xstring       \
-xunicode      \
-zhmetrics     \
-zhnumber
+xunicode
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
