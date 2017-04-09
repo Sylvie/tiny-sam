@@ -76,6 +76,7 @@ filehook      \
 ifxetex       \
 latexmk       \
 lm-math       \
+logreq        \
 lualatex-math \
 luatexbase    \
 luatexja      \
