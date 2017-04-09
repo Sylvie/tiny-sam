@@ -14,7 +14,7 @@ matrix:
           packages:
             - g++-5
             - libunittest++-dev
-	  install:
+      install:
         - source ./manual/texlive-ubuntu.sh
       cache:
         directories:
