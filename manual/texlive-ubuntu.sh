@@ -87,6 +87,7 @@ trimspaces    \
 ucharcat      \
 ulem          \
 units         \
+url           \
 xcolor        \
 xecjk         \
 xunicode      \
