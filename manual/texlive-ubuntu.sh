@@ -73,6 +73,7 @@ etoolbox      \
 fandol        \
 filehook      \
 ifxetex       \
+latexmk       \
 lm-math       \
 lualatex-math \
 luatexbase    \
