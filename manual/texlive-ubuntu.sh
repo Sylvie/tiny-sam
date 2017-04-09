@@ -65,6 +65,7 @@ amsmath       \
 biber         \
 biblatex      \
 ec            \
+etoolbox      \
 latexmk       \
 lm-math       \
 logreq        \
