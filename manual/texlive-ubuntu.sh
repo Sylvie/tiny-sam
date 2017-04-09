@@ -90,6 +90,7 @@ units         \
 url           \
 xcolor        \
 xecjk         \
+xstring       \
 xunicode      \
 zhmetrics     \
 zhnumber
