@@ -14,7 +14,7 @@ tar -xzf install-tl-unx.tar.gz
 cd install-tl-20*
 
 # Install a minimal system
-./install-tl --profile=../support/texlive.profile
+./install-tl --profile=../manual/texlive-ubuntu.profile
 
 cd ..
 fi
