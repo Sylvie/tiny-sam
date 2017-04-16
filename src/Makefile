@@ -18,3 +18,6 @@ $(builddir)%.o: %.cpp $(DEPS)
 
 $(targets): $(objects)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
+
+dist: $(targets)
+	cp $(targets) ../$(distDir)

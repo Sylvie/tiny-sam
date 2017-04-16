@@ -33,6 +33,7 @@ matrix:
 script:
   - g++ --version
   - make CXX=$COMPILER
+  - make dist
   - pwd
   - ls
   - ls -R
