@@ -38,4 +38,5 @@ script:
   - ls
   - ls -R
   - ls build/
+  - less VERSION
   - build/hello.out
