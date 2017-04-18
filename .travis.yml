@@ -29,7 +29,7 @@ matrix:
         - brew outdated unittest-cpp || brew upgrade unittest-cpp
 
 before_install:
-  git fetch --tags
+  - git fetch --tags
 
 script:
   - g++ --version
@@ -39,5 +39,7 @@ script:
   - ls
   - ls -R
   - ls build/
-  - less VERSION
+  - cat VERSION
+  - git tag
+  - git describe --always
   - build/hello.out
