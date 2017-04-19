@@ -28,6 +28,9 @@ matrix:
         - brew update
         - brew outdated unittest-cpp || brew upgrade unittest-cpp
 
+git:
+  depth: 100
+
 before_install:
   - git fetch --tags
 
