@@ -31,8 +31,8 @@ matrix:
 git:
   depth: 100
 
-before_install:
-  - git fetch --tags
+#before_install:
+#  - git fetch --tags
 
 script:
   - g++ --version
