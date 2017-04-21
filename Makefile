@@ -18,6 +18,6 @@ clean:
 
 updateVersionNumber:
 	./update-version-number.sh
-	$(eval versionNumber := $(shell head -1 VERSION) )
-	$(eval buildNumber := $(shell head -2 VERSION | tail -1) )
-	echo $(versionNumber) $(buildNumber)
+	$(eval versionNumber := $(shell head -1 VERSION))
+	$(eval buildNumber := $(shell head -2 VERSION | tail -1))
+	echo "$(versionNumber)" "$(buildNumber)"
