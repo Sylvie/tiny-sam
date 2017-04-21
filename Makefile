@@ -5,7 +5,7 @@ all: updateVersionNumber
 	+$(MAKE) -C manual/
 
 dist: updateVersionNumber
-	$(eval distDir := $(destDirPrefix)$(versionNumber) )
+	$(eval distDir := $(destDirPrefix)$(versionNumber)$(OSNamePostfix) )
 	mkdir -p $(distDir)
 	cp VERSION $(distDir)
 	+$(MAKE) dist -C src/ distDir=$(distDir)

@@ -34,7 +34,7 @@ git:
 script:
   - g++ --version
   - make CXX=$COMPILER
-  - make dist
+  - make dist OSNamePostfix="-${TRAVIS_OS_NAME}"
   - pwd
   - ls
   - ls -R
