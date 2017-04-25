@@ -28,7 +28,7 @@ matrix:
         - brew update
         - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
-        - brew cask install basictex
+        - brew cask install mactex
         - brew install ghostscript
         - sudo tlmgr update --self --all
         - sudo tlmgr install latexmk
