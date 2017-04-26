@@ -29,10 +29,10 @@ matrix:
         - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
         - brew cask install basictex
-        - which tlmgr
-        - brew install ghostscript
-        - sudo tlmgr update --self --all
-        - sudo tlmgr install latexmk
+#        - which tlmgr
+#        - brew install ghostscript
+#        - sudo tlmgr update --self --all
+#        - sudo tlmgr install latexmk
 
 git:
   depth: 100
@@ -42,6 +42,7 @@ script:
   - make CXX=$COMPILER
   - make dist OSNamePostfix="-${TRAVIS_OS_NAME}"
   - pwd
+  - ls /
   - ls
   - ls -R
   - ls build/
