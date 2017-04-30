@@ -3,7 +3,7 @@
 #---------------------------------#
 # scripts that run after cloning repository
 install:
-  - wget http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable-2.9.5857.exe
+  - DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable-2.9.5857.exe
   - 7za x miktex-portable-2.96326.exe -o C:\miktex >NUL
   - set "PATH=%PATH%;c:\miktex\miktex\bin"
 
