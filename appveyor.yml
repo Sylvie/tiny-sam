@@ -5,8 +5,8 @@
 install:
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable-2.9.6326.exe"
   - ps: 7z x "miktex-portable-2.9.6326.exe" -oC:\miktex
-  - SET "PATH=%PATH%;c:\miktex\miktex\bin"
-  - ls "c:\miktex"
+  - SET "PATH=%PATH%;c:\miktex\texmfs\miktex\bin"
+  - ls "c:\miktex\texmfs\"
   - latexmk
 
 #---------------------------------#
