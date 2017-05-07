@@ -6,9 +6,10 @@ install:
   - ps: New-Item c:\temp\miktex -itemtype directory
   - ps: cd c:\temp\miktex
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
-  - ps: unzip miktexsetup.zip
+  - ps: 7z x miktexsetup.zip
   - ls
   - ps: .\miktexsetup.exe --verbose --local-package-repository=c:\temp\miktex\ --package-set=basic download
+  - ps: .\miktexsetup.exe --verbose --local-package-repository=c:\temp\miktex\ --package-set=basic install
   - ls
   - ls -R
   - latexmk
