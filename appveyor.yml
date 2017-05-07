@@ -5,7 +5,8 @@
 install:
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
   - ps: unzip miktexsetup.zip
-  - ps: miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
+  - ls
+  - ps: .\miktexsetup.exe --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
   - ls "c:\temp\miktex\"
   - latexmk
 
