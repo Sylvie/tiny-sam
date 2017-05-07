@@ -3,10 +3,10 @@
 #---------------------------------#
 # scripts that run after cloning repository
 install:
-  - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable-2.9.6326.exe"
-  - ps: 7z x "miktex-portable-2.9.6326.exe" -oC:\miktex
-  - SET "PATH=%PATH%;c:\miktex\texmfs\miktex\bin"
-  - ls "c:\miktex\texmfs\"
+  - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
+  - ps: unzip miktexsetup.zip
+  - ps: miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
+  - ls "c:\temp\miktex\"
   - latexmk
 
 #---------------------------------#
