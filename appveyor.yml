@@ -3,11 +3,13 @@
 #---------------------------------#
 # scripts that run after cloning repository
 install:
+  - ps: New-Item APPVEYOR_BUILD_FOLDER\miktex -itemtype directory
+  - ps: cd APPVEYOR_BUILD_FOLDER\miktex
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
   - ps: unzip miktexsetup.zip
   - ls
-  - ps: .\miktexsetup.exe --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
-  - ls "c:\temp\miktex\"
+  - ps: .\miktexsetup.exe --verbose --local-package-repository=APPVEYOR_BUILD_FOLDER\miktex\ --package-set=basic download
+  - ls
   - latexmk
 
 #---------------------------------#
