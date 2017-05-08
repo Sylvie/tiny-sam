@@ -3,14 +3,15 @@
 #---------------------------------#
 # scripts that run after cloning repository
 install:
-  - ps: New-Item c:\temp\miktex -itemtype directory
+  - ps: New-Item C:\temp\miktex -itemtype directory
+  - ps: ls C:\
   - ps: cd c:\temp\miktex
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
   - ps: 7z x miktexsetup.zip
   - ls
-  - ps: c:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="c:\temp\miktex\" --package-set=basic download
+  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\" --package-set=basic download
   - ls
-  - ps: c:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="c:\temp\miktex\" --package-set=basic install
+  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\" --package-set=basic install
   - ls
   - ls -R
   - latexmk
