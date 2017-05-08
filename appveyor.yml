@@ -9,6 +9,7 @@ install:
   - ps: 7z x miktexsetup.zip
   - ls
   - ps: .\miktexsetup.exe --verbose --local-package-repository=c:\temp\miktex\ --package-set=basic download
+  - ls
   - ps: .\miktexsetup.exe --verbose --local-package-repository=c:\temp\miktex\ --package-set=basic install
   - ls
   - ls -R
