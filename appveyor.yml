@@ -58,10 +58,10 @@ deploy:
 # on build failure
 on_failure:
   - ps: ls C:\
-  - ps: ls "C:\Program Files (x86)\"
-  - ps: ls "C:\Program Files (x86)\MiKTeX 2.9\"
-  - ps: ls "C:\Program Files (x86)\MiKTeX 2.9\miktex\"
-  - ps: ls "C:\Program Files (x86)\MiKTeX 2.9\miktex\bin\"
+  - ps: ls "C:\Program Files\"
+  - ps: ls "C:\Program Files\MiKTeX 2.9\"
+  - ps: ls "C:\Program Files\MiKTeX 2.9\miktex\"
+  - ps: ls "C:\Program Files\MiKTeX 2.9\miktex\bin\"
 
 # after build failure or success
 #on_finish:
