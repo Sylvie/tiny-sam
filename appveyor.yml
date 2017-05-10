@@ -47,3 +47,21 @@ deploy:
     on:
       appveyor_repo_tag: true       # deploy on tag push only
 
+#---------------------------------#
+#        global handlers          #
+#---------------------------------#
+
+# on successful build
+#on_success:
+#- do something
+
+# on build failure
+on_failure:
+  - ps: ls C:\
+  - ps: ls "C:\Program Files (x86)\"
+  - ps: ls "C:\Program Files (x86)\MiKTeX 2.9\"
+  - ps: ls "C:\Program Files (x86)\MiKTeX 2.9\bin\"
+
+# after build failure or success
+#on_finish:
+#- do something
