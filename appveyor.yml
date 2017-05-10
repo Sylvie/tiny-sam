@@ -6,8 +6,8 @@ install:
   - ps: New-Item C:\temp\miktex -itemtype directory
   - ps: ls C:\
   - ps: cd c:\temp\miktex
-  - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup.zip"
-  - ps: 7z x miktexsetup.zip
+  - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup-x64.zip"
+  - ps: 7z x miktexsetup-x64.zip
   - ls
   - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\" --package-set=basic download
   - ls
