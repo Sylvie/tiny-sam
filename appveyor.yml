@@ -6,19 +6,7 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 # scripts that run after cloning repository
 install:
-  - ps: New-Item C:\temp\miktex\packages -itemtype directory
-  - ps: New-Item "C:\Program Files\MiKTeX 2.9\miktex\bin\" -itemtype directory
-  - ps: ls C:\
-  - ps: cd c:\temp\miktex
-  - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup-x64.zip"
-  - ps: 7z x miktexsetup-x64.zip
-  - ls
-  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\packages" --package-set=complete download
-  - ls
-  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\packages" --package-set=basic install
-  - ls
-  - ls -R
-  - latexmk
+  - ps: choco install miktex
 
 #---------------------------------#
 #       build configuration       #
