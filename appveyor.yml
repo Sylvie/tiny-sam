@@ -13,7 +13,7 @@ install:
   - ps: Start-FileDownload "http://mirrors.ctan.org/systems/win32/miktex/setup/miktexsetup-x64.zip"
   - ps: 7z x miktexsetup-x64.zip
   - ls
-  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\packages" --package-set=basic download
+  - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\packages" --package-set=complete download
   - ls
   - ps: C:\temp\miktex\miktexsetup.exe --verbose --local-package-repository="C:\temp\miktex\packages" --package-set=basic install
   - ls
