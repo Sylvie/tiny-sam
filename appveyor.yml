@@ -4,6 +4,12 @@
 # scripts that are called at very beginning, before repo cloning
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+# build cache to preserve files/folders between builds
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+
 # scripts that run after cloning repository
 install:
   - ps: choco install miktex
