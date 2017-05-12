@@ -13,7 +13,8 @@ install:
 #---------------------------------#
 build_script:
   - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
-  - ps: mingw32-make.exe
+  - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
+  - mingw32-make.exe
   - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
