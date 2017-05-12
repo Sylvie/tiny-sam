@@ -13,6 +13,7 @@ cache:
 # scripts that run after cloning repository
 install:
   - ps: choco install miktex
+  - ps: mpm --install-some=miktex-pkg-list.txt
 
 #---------------------------------#
 #       build configuration       #
