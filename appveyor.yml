@@ -13,6 +13,7 @@ cache:
 # scripts that run after cloning repository
 install:
   - ps: choco install miktex
+  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
   - ps: mpm --install-some=miktex-pkg-list.txt
 
 #---------------------------------#
