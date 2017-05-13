@@ -1,5 +1,10 @@
+babel
+ptex
+uptex
+ptex-base
+uptex-base
+ptex-fonts
 siunitx
-tlmgr install
 adobemapping
 amsfonts
 amsmath
