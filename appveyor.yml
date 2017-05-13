@@ -15,7 +15,6 @@ install:
   - ps: choco install miktex
   - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
   - ps: initexmf --admin --set-config-value [MPM]AutoInstall=1
-  #  - ps: mpm --install-some=$env:APPVEYOR_BUILD_FOLDER\manual\miktex-pkg-list.txt
 
 #---------------------------------#
 #       build configuration       #
