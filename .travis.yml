@@ -44,7 +44,7 @@ matrix:
 #        - which tlmgr
 #        - brew install ghostscript
 #        - sudo tlmgr update --self --all
-        - tlmgr install latexmk
+        - sudo tlmgr install latexmk
 
 git:
   depth: 100
