@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS+=-g -std=c++14 -Wall -pedantic
-CPPFLAGS+=-static-libstdc++ -static-libgcc
+CXXFLAGS+=-static-libstdc++ -static-libgcc
 DEPS=
 
 targetnames=hello
