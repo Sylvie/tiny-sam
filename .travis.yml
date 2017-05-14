@@ -49,7 +49,7 @@ script:
   - cat VERSION
   - git tag
   - git describe --always
-  - build/hello.out
+  - build/hello
 
 deploy:
   provider: releases

@@ -29,7 +29,7 @@ build_script:
   - set SUFFIXE_SYS=".exe"
   - mingw32-make.exe
   - mingw32-make.exe dist OSNamePostfix="-%PLATFORM%"
-  - ps: build/hello.out
+  - ps: build/hello.exe
   - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
@@ -38,7 +38,10 @@ build_script:
 artifacts:
 
 # pushing a single file with "Deployment name" specified
-- path: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
+#- path: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
+
+# pushing entire folder as a zip archive
+- path: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%
 
 #---------------------------------#
 #     deployment configuration    #
@@ -48,7 +51,7 @@ deploy:
   - provider: GitHub
     auth_token:
       secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
-    artifact: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
+    #artifact: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
     draft: true
     prerelease: false
     on:
