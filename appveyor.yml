@@ -26,7 +26,8 @@ platform: windows
 build_script:
   - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
-  - mingw32-make.exe -static-libstdc++ -static-libgcc
+  - set SUFFIXE_SYS=".exe"
+  - mingw32-make.exe
   - mingw32-make.exe dist OSNamePostfix="-%PLATFORM%"
   - ps: build/hello.out
   - ls -R C:\projects\tiny-sam\

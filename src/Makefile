@@ -1,11 +1,12 @@
 CXX=g++
 CXXFLAGS+=-g -std=c++14 -Wall -pedantic
+CPPFLAGS+=-static-libstdc++ -static-libgcc
 DEPS=
 
-targetnames=hello.out
+targetnames=hello
 objectnames=hello.o
 builddir=../build/
-targets=$(addprefix $(builddir), $(targetnames))
+targets=$addsuffix($(addprefix $(builddir), $(targetnames)), $(SUFFIX_SYS))
 objects=$(addprefix $(builddir), $(objectnames))
 
 all: resources $(targets)
