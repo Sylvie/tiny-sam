@@ -33,6 +33,7 @@ matrix:
         - brew cask info basictex
         - ls /usr/local/Caskroom/basictex/2016.1009
         - ls /usr/local/Caskroom/basictex/
+        - install -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
 #        - which tlmgr
 #        - brew install ghostscript
 #        - sudo tlmgr update --self --all
