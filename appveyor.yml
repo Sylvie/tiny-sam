@@ -28,6 +28,7 @@ build_script:
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - mingw32-make.exe
   - mingw32-make.exe dist OSNamePostfix="-%PLATFORM%"
+  - ps: build/hello.out
   - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
