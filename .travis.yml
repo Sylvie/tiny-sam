@@ -35,6 +35,9 @@ matrix:
         - ls /usr/local/Caskroom/basictex/
         - sudo installer -verbose -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
         - ls /
+        - ls /usr/
+        - ls /usr/local/
+        - ls /usr/local/texlive/
 #        - which tlmgr
 #        - brew install ghostscript
 #        - sudo tlmgr update --self --all
