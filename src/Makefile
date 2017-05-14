@@ -6,7 +6,7 @@ DEPS=
 targetnames=hello
 objectnames=hello.o
 builddir=../build/
-targets=$addsuffix($(addprefix $(builddir), $(targetnames)), $(SUFFIX_SYS))
+targets=$(addsuffix $(SUFFIX_SYS), $(addprefix $(builddir), $(targetnames)))
 objects=$(addprefix $(builddir), $(objectnames))
 
 all: resources $(targets)
