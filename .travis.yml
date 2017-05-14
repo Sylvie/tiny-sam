@@ -31,6 +31,8 @@ matrix:
         - brew cask install basictex
         - brew cask list
         - brew cask info basictex
+        - ls /usr/local/Caskroom/basictex/2016.1009
+        - ls /usr/local/Caskroom/basictex/
 #        - which tlmgr
 #        - brew install ghostscript
 #        - sudo tlmgr update --self --all
