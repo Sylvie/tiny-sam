@@ -36,7 +36,7 @@ matrix:
         - sudo installer -verbose -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
         - echo $PATH
         - ls /usr/local/texlive/2016basic
-		- ls /usr/local/texlive/2016basic/bin
+        - ls /usr/local/texlive/2016basic/bin
         - export PATH="$PATH:/usr/local/texlive/2016basic/bin"
         - echo $PATH
 #        - source ~/.bash_profile
