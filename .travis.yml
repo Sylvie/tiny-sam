@@ -28,7 +28,7 @@ matrix:
         - brew update
         - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
-        - source ./manual/basictex-osx
+        - source ./manual/basictex-osx.sh
 #        - brew cask install basictex
 #        - brew cask list
 #        - brew cask info basictex
