@@ -10,7 +10,7 @@
 
 # See if there is a cached version of TL available
 export PATH="/usr/local/texlive/2016basic/bin/universal-darwin":$PATH
-if ! command -v texlua > /dev/null; then
+if ! command -v latexmk > /dev/null; then
 
 # Obtain BasicTeX with brew cask
 brew cask install basictex
@@ -23,17 +23,9 @@ sudo tlmgr update --self
 
 fi
 
-# Needed for any use of texlua even if not testing LuaTeX
-sudo tlmgr install luatex
-
-# Required to build plain and LaTeX formats:
-# TeX90 plain for unpacking, pdfLaTeX, LuaLaTeX and XeTeX for tests
-sudo tlmgr install cm etex knuth-lib latex-bin tex tex-ini-files unicode-data \
-xetex
-
 # Additional requirements for (u)pLaTeX, done with no dependencies to
 # avoid large font payloads
-sudo tlmgr install --no-depends babel ptex uptex ptex-base uptex-base ptex-fonts \
+sudo tlmgr install --no-depends ptex uptex ptex-base uptex-base ptex-fonts \
 uptex-fonts platex uplatex
 
 # Assuming a 'basic' font set up, metafont is required to avoid
