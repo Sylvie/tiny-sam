@@ -50,5 +50,7 @@ xstring
 # Keep no backups (not required, simply makes cache bigger)
 sudo tlmgr option -- autobackup 0
 
+cat /usr/local/texlive/2016basic/texmf-dist/web2c/updmap.cfg
+
 # Update the TL install but add nothing new
 sudo tlmgr update --self --all --no-auto-install
