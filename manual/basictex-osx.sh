@@ -28,23 +28,9 @@ fi
 sudo tlmgr install --no-depends ptex uptex ptex-base uptex-base ptex-fonts \
 uptex-fonts platex uplatex
 
-# Assuming a 'basic' font set up, metafont is required to avoid
-# warnings with some packages and errors with others
-sudo tlmgr install metafont mfware
-
-
 # Set up graphics: nowadays split over a few places and requiring
 # HO's bundle
-sudo tlmgr install graphics graphics-cfg graphics-def oberdiek
-
-# Contrib packages for testing
-#
-# The packages themselves are done with --no-depends to avoid
-# picking up l3kernel, etc.
-#
-# fontspec comes first as other packages tested have it as a dep
-sudo tlmgr install --no-depends fontspec
-sudo tlmgr install ifluatex lm lualibs luaotfload
+sudo tlmgr install graphics-def
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # Dependencies other than the core l3build set up, metafont, fontspec and the
@@ -53,23 +39,13 @@ sudo tlmgr install --no-depends \
 siunitx       \
 tlmgr install \
 adobemapping  \
-amsfonts      \
-amsmath       \
 biber         \
 biblatex      \
-ec            \
-etoolbox      \
 latexmk       \
 lm-math       \
 logreq        \
-pgf           \
-tools         \
-ulem          \
 units         \
-url           \
-xcolor        \
-xstring       \
-xunicode
+xstring
 
 # Keep no backups (not required, simply makes cache bigger)
 sudo tlmgr option -- autobackup 0
