@@ -1,12 +1,15 @@
 CXX=g++
 CXXFLAGS += -g -std=c++14 -Wall -pedantic
-CXXFLAGS += -static
+ifeq ($(sambada_static_linking), true)
+{
+	CXXFLAGS += -static
+}
 DEPS=
 
 targetnames=hello
 objectnames=hello.o
 builddir=../build/
-targets=$(addsuffix $(SUFFIX_SYS), $(addprefix $(builddir), $(targetnames)))
+targets=$(addsuffix $(sambada_program_suffix), $(addprefix $(builddir), $(targetnames)))
 objects=$(addprefix $(builddir), $(objectnames))
 
 all: resources $(targets)
