@@ -19,7 +19,7 @@ brew cask install basictex
 sudo installer -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
 
 # Updating the installation
-sudo tlmgr update --self
+sudo tlmgr update --self --all
 
 fi
 
