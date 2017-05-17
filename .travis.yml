@@ -24,9 +24,9 @@ matrix:
     - os: osx
       compiler: gcc
       env: COMPILER=g++
-      before_install:
-        - brew update
-        - brew outdated unittest-cpp || brew upgrade unittest-cpp
+#      before_install:
+#        - brew update
+#        - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
         - source ./manual/basictex-osx.sh
 #        - brew cask install basictex
@@ -46,6 +46,10 @@ matrix:
 #        - brew install ghostscript
 #        - sudo tlmgr update --self --all
 #        - sudo tlmgr install latexmk
+      cache:
+        directories:
+          - /usr/local/Caskroom/
+          - /usr/local/texlive/
 
 git:
   depth: 100
@@ -74,3 +78,4 @@ deploy:
   on:
     tags: true
     repo: Sylvie/tiny-sam
+

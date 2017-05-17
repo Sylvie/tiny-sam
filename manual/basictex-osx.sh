@@ -12,6 +12,9 @@
 export PATH="/usr/local/texlive/2016basic/bin/universal-darwin":$PATH
 if ! command -v latexmk > /dev/null; then
 
+# Update HomeBrew before installing TeXLive
+brew update
+
 # Obtain BasicTeX with brew cask
 brew cask install basictex
 
