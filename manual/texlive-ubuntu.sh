@@ -58,7 +58,6 @@ tlmgr install ifluatex lm lualibs luaotfload
 # 'graphics stack' (itself needed by fontspec) are listed below
 tlmgr install --no-depends \
 siunitx       \
-tlmgr install \
 adobemapping  \
 amsfonts      \
 amsmath       \

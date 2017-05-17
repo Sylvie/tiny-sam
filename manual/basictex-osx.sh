@@ -37,7 +37,6 @@ sudo tlmgr install graphics-def
 # 'graphics stack' (itself needed by fontspec) are listed below
 sudo tlmgr install --no-depends \
 siunitx       \
-tlmgr install \
 adobemapping  \
 biber         \
 biblatex      \
