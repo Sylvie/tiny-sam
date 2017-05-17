@@ -1,9 +1,9 @@
 CXX=g++
 CXXFLAGS += -g -std=c++14 -Wall -pedantic
 ifeq ($(sambada_static_linking), true)
-{
 	CXXFLAGS += -static
-}
+endif
+
 DEPS=
 
 targetnames=hello
