@@ -29,6 +29,7 @@ matrix:
 #        - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
         - source ./manual/basictex-osx.sh
+        - ls -l /Library/PreferencePanes
 #        - brew cask install basictex
 #        - brew cask list
 #        - brew cask info basictex
@@ -48,8 +49,12 @@ matrix:
 #        - sudo tlmgr install latexmk
       cache:
         directories:
-          - /usr/local/Caskroom/
           - /usr/local/texlive/
+		  - /usr/local/bin/texdist/
+          - /usr/texbin/
+          - /Library/TeX/
+          - /Library/PreferencePanes/
+
 
 git:
   depth: 100

@@ -9,7 +9,7 @@
 # required
 
 # See if there is a cached version of TL available
-export PATH="/usr/local/texlive/2016basic/bin/universal-darwin":$PATH
+export PATH=$PATH:"/usr/local/texlive/2016basic/bin/universal-darwin"
 if ! command -v latexmk > /dev/null; then
 
 # Obtain BasicTeX
