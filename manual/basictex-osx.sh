@@ -12,14 +12,17 @@
 export PATH="/usr/local/texlive/2016basic/bin/universal-darwin":$PATH
 if ! command -v latexmk > /dev/null; then
 
+# Obtain BasicTeX
+wget http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg
+
 # Update HomeBrew before installing TeXLive
-brew update
+#brew update
 
 # Obtain BasicTeX with brew cask
-brew cask install basictex
+#brew cask install basictex
 
 # Install a minimal system
-sudo installer -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
+sudo installer -pkg mactex-basictex-20161009.pkg -target /
 
 # Updating the installation
 sudo tlmgr update --self --all
