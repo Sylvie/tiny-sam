@@ -22,7 +22,7 @@ wget http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg
 #brew cask install basictex
 
 # Install a minimal system
-sudo installer -pkg mactex-basictex-20161009.pkg -target /
+sudo installer -pkg BasicTeX.pkg -target /
 
 # Updating the installation
 sudo tlmgr update --self --all
