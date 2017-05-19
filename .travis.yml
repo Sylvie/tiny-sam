@@ -50,7 +50,7 @@ matrix:
       cache:
         directories:
           - /usr/local/texlive/
-		  - /usr/local/bin/texdist/
+          - /usr/local/bin/texdist/
           - /usr/texbin/
           - /Library/TeX/
           - /Library/PreferencePanes/
