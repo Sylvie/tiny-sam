@@ -15,12 +15,6 @@ if ! command -v latexmk > /dev/null; then
 # Obtain BasicTeX
 wget http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg
 
-# Update HomeBrew before installing TeXLive
-#brew update
-
-# Obtain BasicTeX with brew cask
-#brew cask install basictex
-
 # Install a minimal system
 sudo installer -pkg BasicTeX.pkg -target /
 

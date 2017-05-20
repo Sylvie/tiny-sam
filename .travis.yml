@@ -24,29 +24,9 @@ matrix:
     - os: osx
       compiler: gcc
       env: COMPILER=g++
-#      before_install:
-#        - brew update
-#        - brew outdated unittest-cpp || brew upgrade unittest-cpp
       install:
         - source ./manual/basictex-osx.sh
         - ls -l /Library/PreferencePanes
-#        - brew cask install basictex
-#        - brew cask list
-#        - brew cask info basictex
-#        - ls /usr/local/Caskroom/basictex/2016.1009
-#        - ls /usr/local/Caskroom/basictex/
-#        - sudo installer -verbose -pkg /usr/local/Caskroom/basictex/2016.1009/mactex-basictex-20161009.pkg -target /
-#        - echo $PATH
-#        - ls /usr/local/texlive/2016basic
-#        - ls /usr/local/texlive/2016basic/bin/universal-darwin
-#        - export PATH="$PATH:/usr/local/texlive/2016basic/bin/universal-darwin"
-#        - echo $PATH
-#        - source ~/.bash_profile
-#        - echo $PATH
-#        - which tlmgr
-#        - brew install ghostscript
-#        - sudo tlmgr update --self --all
-#        - sudo tlmgr install latexmk
       cache:
         directories:
           - /usr/local/texlive/
