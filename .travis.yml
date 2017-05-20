@@ -59,7 +59,7 @@ deploy:
     secure: WWX4xvz3P6JDrRd+OYBAK+rz4K9rmxELgEHi1S5K+EhES3v0msIMkJUGWyqABXOSeRRQYHEaP1ZCspG4W0HiI0tERqzU0Sno/Iu1MfQf4EwpzK8ZGZyiC/LJh2iq1TJBmTzWAz+dGkyJwVBuWAdCI3lezCGnFHYyRQhvxwUCDM+KUSE93AKOD8YxfzXatgi8wCcw5AOIqgJi0GF9wuQTeT7vMjqYLGN6J9L040DOPvIzPUL/z+xQsbGx9cyfzYGm6K7jxPpyTPTp74cdyp4jUX3c/M/UiE7G5AV1SuxIuSsZWLrDgTVPeebvQNrNc2g7xoqIwPDLml6jEWE/g96mRh3uBOCJJxcscw0S0Drspki8zzooJhqp9qDANDvS4JB8ZvQ0keSSJJC9YnJ4DWZGsuP9Pr1qqWGoO86afvAiRtS6MzfVyz/kA3WY/mC4kbD19pgqooFKmnb0OJ/Yb0jWdkMGPUshkZVc3ZH0HUcBgYTVQAS/gyqfGJERrKTS56B+g7CDz3vB3HyR0uUNaVJE0eH9PhHQbKXp7QFqQ7Yjhf/FrquyjCkhubPsjo5UbhIJvh0oSCGu4yaQAAIIqFXfkePVkthum8ZD5GJzLBsfnO4M0oGpCg0eoz+3RRw1XnAmAzVixOeELuimXtrcPVAbvt9O3Rg8toCaG7/9s9Wocn0=
   file: tiny-sam-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.tar.gz
   skip_cleanup: true
-  draft: true
+  draft: false
   on:
     tags: true
     repo: Sylvie/tiny-sam

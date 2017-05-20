@@ -54,9 +54,8 @@ deploy:
     auth_token:
       secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
     #artifact: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
-    release: "Draft"
-    draft: true
-    prerelease: true
+    draft: false
+    prerelease: false
     on:
       appveyor_repo_tag: true       # deploy on tag push only
 
