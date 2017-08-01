@@ -24,19 +24,27 @@ hello_SOURCES = src/hello.cpp
 #	+$(MAKE) dist -C manual/ distDir=$(distDir)
 #	tar -zcvf $(strip $(distDir)).tar.gz $(distDir)
 
-pdf: #updateVersionNumber
-	+$(MAKE) pdf -C manual/
+pdf_SOURCES = manual/manual.tex
 
-clean:
-	rm -fr build/ $(destDirPrefix)v*/ $(destDirPrefix)*.tar.gz
-	+$(MAKE) clean -C manual/
+manual: #updateVersionNumber
+#	+$(MAKE) pdf -C manual/
 
-dist-clean: clean
+MOSTLYCLEANFILES =
+CLEANFILES =
+DISTCLEANFILES =
+MAINTAINERCLEANFILES =
+REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 Makefile.in configure depcomp install-sh missing)
 
-maintainer-clean: dist-clean
+#clean:
+#	rm -fr build/ $(destDirPrefix)v*/ $(destDirPrefix)*.tar.gz
+#	+$(MAKE) clean -C manual/
+
+#dist-clean: clean
+
+#maintainer-clean: dist-clean
 
 repo-clean: maintainer-clean
-	rm -rf autom4te.cache/ aclocal.m4 Makefile Makefile.in config.log config.status configure install-sh missing
+	rm -rf $(REPOCLEANFILES)
 	+$(MAKE) maintainer-clean -C manual/
 
 
