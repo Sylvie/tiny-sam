@@ -1,4 +1,6 @@
-#SUBDIRS = src manual
+## Process this file with automake to produce Makefile.in
+
+#SUBDIRS = manual
 
 destDirPrefix=tiny-sam-
 
@@ -16,6 +18,11 @@ all: #updateVersionNumber
 bin_PROGRAMS = hello
 hello_SOURCES = src/hello.cpp
 
+dist_doc_DATA = manual/manual.tex manual/bibliography.bib
+
+#sambadoc_SOURCES = manual/manual.tex manual/bibliography.bib
+
+
 #dist: updateVersionNumber
 #	$(eval distDir := $(destDirPrefix)$(versionNumber)$(OSNamePostfix) )
 #	mkdir -p $(distDir)
@@ -24,7 +31,7 @@ hello_SOURCES = src/hello.cpp
 #	+$(MAKE) dist -C manual/ distDir=$(distDir)
 #	tar -zcvf $(strip $(distDir)).tar.gz $(distDir)
 
-pdf_SOURCES = manual/manual.tex
+pdf-local: pdf-local-manual
 
 manual: #updateVersionNumber
 #	+$(MAKE) pdf -C manual/
@@ -34,6 +41,9 @@ CLEANFILES =
 DISTCLEANFILES =
 MAINTAINERCLEANFILES =
 REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 Makefile.in configure depcomp install-sh missing)
+
+all-local:
+	echo "-> all-local-manual called"
 
 #clean:
 #	rm -fr build/ $(destDirPrefix)v*/ $(destDirPrefix)*.tar.gz
@@ -53,3 +63,5 @@ updateVersionNumber:
 	$(eval versionNumber := $(shell head -1 VERSION))
 	$(eval buildNumber := $(shell head -2 VERSION | tail -1))
 	echo "$(versionNumber)" "$(buildNumber)"
+
+include manual/Makefile.mk
