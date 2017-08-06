@@ -14,11 +14,6 @@ dist-hook:
 bin_PROGRAMS = hello
 hello_SOURCES = src/hello.cpp
 
-#dist_doc_DATA = manual/manual.tex manual/bibliography.bib
-
-#sambadoc_SOURCES = manual/manual.tex manual/bibliography.bib
-
-
 #dist: updateVersionNumber
 #	$(eval distDir := $(destDirPrefix)$(versionNumber)$(OSNamePostfix) )
 #	mkdir -p $(distDir)
