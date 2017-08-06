@@ -3,7 +3,11 @@ manual_directory := "manual/"
 manual_sources := $(srcdir)/manual/$(manual_filename) $(srcdir)/manual/bibliography.bib
 manual_pdf := $(builddir)/manual/manual.pdf
 
-EXTRA_DIST += $(manual_sources) $(manual_pdf)
+EXTRA_DIST += $(manual_sources)
+
+if HAVE_LATEXMK
+EXTRA_DIST += $(manual_pdf)
+endif
 
 LATEXMK = latexmk -r $(srcdir)/manual/latexmkrc -output-directory=$(manual_directory)
 LATEXMK_CLEAN = latexmk -r ../$(srcdir)/manual/latexmkrc
