@@ -11,14 +11,10 @@ $(top_srcdir)/.version:
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
 
-all: #updateVersionNumber
-#	+$(MAKE) -C src/
-#	+$(MAKE) -C manual/
-
 bin_PROGRAMS = hello
 hello_SOURCES = src/hello.cpp
 
-dist_doc_DATA = manual/manual.tex manual/bibliography.bib
+#dist_doc_DATA = manual/manual.tex manual/bibliography.bib
 
 #sambadoc_SOURCES = manual/manual.tex manual/bibliography.bib
 
@@ -33,30 +29,17 @@ dist_doc_DATA = manual/manual.tex manual/bibliography.bib
 
 pdf-local: pdf-local-manual
 
-manual: #updateVersionNumber
-#	+$(MAKE) pdf -C manual/
-
 MOSTLYCLEANFILES =
 CLEANFILES =
 DISTCLEANFILES =
 MAINTAINERCLEANFILES =
 REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 Makefile.in configure depcomp install-sh missing)
 
-all-local:
-	echo "-> all-local-manual called"
+clean-local: clean-local-manual
+	rm -fr build/ $(destDirPrefix)v*/ $(destDirPrefix)*.tar.gz
 
-#clean:
-#	rm -fr build/ $(destDirPrefix)v*/ $(destDirPrefix)*.tar.gz
-#	+$(MAKE) clean -C manual/
-
-#dist-clean: clean
-
-#maintainer-clean: dist-clean
-
-repo-clean: maintainer-clean
+repo-clean: maintainer-clean repo-clean-local-manual
 	rm -rf $(REPOCLEANFILES)
-	+$(MAKE) maintainer-clean -C manual/
-
 
 updateVersionNumber:
 	$(srcdir)/update-version-number.sh
