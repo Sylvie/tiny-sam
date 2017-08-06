@@ -9,7 +9,7 @@ LATEXMK_CLEAN = latexmk -r ../$(srcdir)/manual/latexmkrc
 
 
 prepare_manual_directory:
-	if [ "$(srcdir)" != "." ]; then \
+	if [ "$(top_srcdir)" != "$(top_builddir)" ]; then \
 		mkdir -p $(manual_directory); \
 		cp $(srcdir)/manual/bibliography.bib $(manual_directory); \
 		cp $(srcdir)/manual/manual.tex $(manual_directory); \
@@ -30,7 +30,7 @@ clean-local-manual:
 repo-clean-local-manual:
 	cd $(manual_directory); \
 	$(LATEXMK_CLEAN) -C
-	if [ "$(srcdir)" != "." ]; then \
+	if [ "$(top_srcdir)" != "$(top_builddir)" ]; then \
 		rm manual/bibliography.bib ; \
 		rm manual/manual.tex ; \
 	fi
