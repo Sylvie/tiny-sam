@@ -32,11 +32,11 @@ clean-local-manual:
 	fi
 
 distclean-local-manual:
-	if [ -d "$(manual_directory)" ] && [ "$(top_srcdir)" != "$(top_builddir)" ]; then \
-		rm -f manual/bibliography.bib ; \
-		rm -f manual/manual.tex ; \
-	fi
 	if [ -d "$(manual_directory)" ] && [ -e "$(manual_directory)$(manual_filename)" ]; then \
 		cd $(manual_directory) && \
 		$(LATEXMK_CLEAN) -C $(manual_filename) ; \
+	fi
+	if [ -d "$(manual_directory)" ] && [ "$(top_srcdir)" != "$(top_builddir)" ]; then \
+		rm -f manual/bibliography.bib ; \
+		rm -f manual/manual.tex ; \
 	fi
