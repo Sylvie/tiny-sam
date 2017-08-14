@@ -24,6 +24,9 @@ pdf-local-manual : $(manual_pdf)
 %.pdf : %.tex | prepare_manual_directory
 	$(LATEXMK_BUILD) -pdf $^
 
+binary-archive-local-manual:
+	cp $(manual_pdf) $(archive_basename)
+
 clean-local-manual:
 	if [ -d "$(manual_directory)" ] && [ -e "$(manual_directory)$(manual_filename)" ] ; then \
 		cd $(manual_directory) && \

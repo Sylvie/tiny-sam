@@ -12,6 +12,18 @@ hello_SOURCES = src/hello.cpp
 
 pdf-local: pdf-local-manual
 
+archive_basename = $(builddir)/$(PACKAGE)-OSX
+archive_binaries_basename = $(archive_basename)/binaries
+
+create-archive-folder:
+	mkdir -p $(archive_basename)
+	mkdir -p $(archive_binaries_basename)
+
+binary-archive: all pdf create-archive-folder
+	$(MAKE) binary-archive-local-manual
+	cp $(bin_PROGRAMS) $(archive_binaries_basename)
+	tar -zcvf $(archive_basename).tar.gz $(archive_basename)
+
 MOSTLYCLEANFILES =
 CLEANFILES =
 DISTCLEANFILES =
