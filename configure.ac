@@ -9,6 +9,51 @@ AC_PROG_CXX
 
 AC_CONFIG_FILES([Makefile])
 
+
+# AC_CANONICAL_HOST is needed to access the 'host_os' variable
+AC_CANONICAL_HOST
+AC_MSG_NOTICE([host_os = ${host_os}])
+
+# Defining system identifier
+build_linux=no
+build_windows=no
+build_mac=no
+tiny_sam_system_name=""
+
+# Detect the target system
+case "${host_os}" in
+linux*)
+build_linux=yes
+system_name="Linux"
+;;
+cygwin*|mingw*)
+build_windows=yes
+system_name="Windows"
+;;
+darwin*)
+build_mac=yes
+system_name="OSX"
+;;
+*)
+system_name="UnknownOS"
+AC_MSG_WARN(["OS $host_os is not known"])
+;;
+esac
+
+AC_ARG_VAR(tinysamhostsystemname, [Use this argument to provide a more specific OS name than the guessed one.])
+
+# Use the system name provided by the user if any
+if test "${tinysamhostsystemname}" ; then
+	system_name="${tinysamhostsystemname}"
+fi
+AC_MSG_NOTICE([system_name = ${system_name}])
+AC_SUBST(system_name)
+
+# Pass the conditionals to automake
+AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
+AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
+AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
+
 # Check for presence of latexmk
 AC_CHECK_PROG(LATEXMK, latexmk, latexmk)
 if test -z "$LATEXMK"; then

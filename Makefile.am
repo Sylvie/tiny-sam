@@ -12,7 +12,7 @@ hello_SOURCES = src/hello.cpp
 
 pdf-local: pdf-local-manual
 
-archive_basename = $(builddir)/$(PACKAGE)-OSX
+archive_basename = $(builddir)/$(PACKAGE)-$(system_name)
 archive_binaries_basename = $(archive_basename)/binaries
 
 create-archive-folder:
@@ -28,7 +28,7 @@ MOSTLYCLEANFILES =
 CLEANFILES =
 DISTCLEANFILES =
 MAINTAINERCLEANFILES =
-REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 Makefile.in configure depcomp install-sh missing)
+REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing)
 
 clean-local: clean-local-manual
 
