@@ -41,6 +41,7 @@ git:
 
 script:
   - g++ --version
+  - autoreconf -i
   - mkdir build
   - cd build
   - ../configure tinysamhostsystemname=${TRAVIS_OS_NAME}
