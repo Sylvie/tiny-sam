@@ -47,11 +47,10 @@ script:
   - ../configure tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make CXX=$COMPILER
   - make binary-archive
+  - cd ..
   - pwd
-  - ls /
   - ls
   - ls -R
-  - ls build/
   - cat .version
   - git tag
   - git describe --always
