@@ -26,6 +26,7 @@ matrix:
       env: COMPILER=g++
       install:
         - source ./manual/basictex-osx.sh
+        - ls /usr/local/texlive/
         - ls -l /Library/PreferencePanes
       cache:
         directories:

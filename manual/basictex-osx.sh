@@ -9,7 +9,7 @@
 # required
 
 # See if there is a cached version of TL available
-export PATH=$PATH:"/usr/local/texlive/2016basic/bin/universal-darwin"
+export PATH=$PATH:"/usr/local/texlive/2017basic/bin/universal-darwin"
 if ! command -v latexmk > /dev/null; then
 
 # Obtain BasicTeX
@@ -49,7 +49,7 @@ xstring
 # Keep no backups (not required, simply makes cache bigger)
 sudo tlmgr option -- autobackup 0
 
-cat /usr/local/texlive/2016basic/texmf-dist/web2c/updmap.cfg
+cat /usr/local/texlive/2017basic/texmf-dist/web2c/updmap.cfg
 
 # Update the TL install but add nothing new
 sudo tlmgr update --self --all --no-auto-install
