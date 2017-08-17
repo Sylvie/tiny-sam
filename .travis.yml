@@ -41,14 +41,17 @@ git:
 
 script:
   - g++ --version
+  - mkdir build
+  - cd build
+  - ../configure tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make CXX=$COMPILER
-  - make dist OSNamePostfix="-${TRAVIS_OS_NAME}"
+  - make binary-archive
   - pwd
   - ls /
   - ls
   - ls -R
   - ls build/
-  - cat VERSION
+  - cat .version
   - git tag
   - git describe --always
   - build/hello
