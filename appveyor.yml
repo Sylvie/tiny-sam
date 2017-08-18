@@ -25,8 +25,9 @@ install:
 platform: windows
 
 build_script:
-  - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
+  - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\usr\bin;%PATH%
   - ls C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin
+  - ls C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\usr\bin
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
