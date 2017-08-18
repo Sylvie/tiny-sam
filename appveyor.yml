@@ -30,9 +30,13 @@ build_script:
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
+  - bash -lc "autoreconf -i"
+  - mkdir build
+  - cd build
+  - ../configure --tinysamhostsystemname=%PLATFORM%
   - mingw32-make.exe
-  - mingw32-make.exe dist OSNamePostfix="-%PLATFORM%"
-  - ps: build/hello.exe
+  - mingw32-make.exe binary-archive
+  - ps: hello.exe
   - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
