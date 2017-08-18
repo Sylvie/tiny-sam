@@ -9,7 +9,7 @@
 # required
 
 # See if there is a cached version of TL available
-export PATH=$PATH:"/usr/local/texlive/2017basic/bin/universal-darwin"
+export PATH=$PATH:"/usr/local/texlive/2017basic/bin/x86_64-darwin"
 if ! command -v latexmk > /dev/null; then
 
 # Obtain BasicTeX
@@ -17,9 +17,6 @@ wget http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg
 
 # Install a minimal system
 sudo installer -pkg BasicTeX.pkg -target /
-
-##
-ls -R /usr/local/texlive/
 
 # Updating the installation
 sudo tlmgr update --self --all
