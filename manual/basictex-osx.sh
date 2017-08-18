@@ -19,8 +19,7 @@ wget http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg
 sudo installer -pkg BasicTeX.pkg -target /
 
 ##
-ls /usr/local/texlive/
-ls -R /usr/local/texlive/2017basic/bin/universal-darwin
+ls -R /usr/local/texlive/
 
 # Updating the installation
 sudo tlmgr update --self --all
