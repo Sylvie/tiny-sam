@@ -13,10 +13,10 @@ cache:
   - C:\Users\appveyor\AppData\Roaming\MiKTeX\2.9 -> appveyor.yml
 
 # scripts that run after cloning repository
-install:
-  - ps: choco install miktex
-  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
-  - ps: initexmf --set-config-value [MPM]AutoInstall=1
+#install:
+  #- ps: choco install miktex
+  #- SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
+  #- ps: initexmf --set-config-value [MPM]AutoInstall=1
 
 #---------------------------------#
 #       build configuration       #
@@ -26,8 +26,7 @@ platform: windows
 
 build_script:
   - SET PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\usr\bin;%PATH%
-  - ls C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin
-  - ls C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\usr\bin
+  - ls C:\msys64
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
