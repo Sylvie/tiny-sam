@@ -12,7 +12,7 @@ hello_SOURCES = src/hello.cpp
 
 pdf-local: pdf-local-manual
 
-archive_basename = $(builddir)/$(PACKAGE)-$(system_name)
+archive_basename = $(builddir)/$(PACKAGE)-$(VERSION)-$(system_name)
 archive_binaries_basename = $(archive_basename)/binaries
 
 create-archive-folder:
