@@ -36,7 +36,7 @@ build_script:
   - bash -c "../configure tinysamhostsystemname=%PLATFORM%"
   - make.exe
   - make.exe binary-archive
-  - ps: hello.exe
+  - ps: .\hello.exe
   - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
