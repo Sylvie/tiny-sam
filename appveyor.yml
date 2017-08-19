@@ -32,6 +32,7 @@ build_script:
   - bash -c "autoreconf -i"
   - mkdir build
   - cd build
+  - bash -c "../configure --help"
   - bash -c "../configure --tinysamhostsystemname=%PLATFORM%"
   - make.exe
   - make.exe binary-archive
