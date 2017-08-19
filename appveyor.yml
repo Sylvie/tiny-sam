@@ -32,7 +32,7 @@ build_script:
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
-  - autoreconf -i
+  - bash -c "autoreconf -i"
   - mkdir build
   - cd build
   - ../configure --tinysamhostsystemname=%PLATFORM%
