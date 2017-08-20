@@ -13,10 +13,10 @@ cache:
   - C:\Users\appveyor\AppData\Roaming\MiKTeX\2.9 -> appveyor.yml
 
 # scripts that run after cloning repository
-#install:
-#  - ps: choco install miktex
-#  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
-#  - ps: initexmf --set-config-value [MPM]AutoInstall=1
+install:
+  - ps: choco install miktex
+  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
+  - ps: initexmf --set-config-value [MPM]AutoInstall=1
 
 #---------------------------------#
 #       build configuration       #
@@ -30,7 +30,6 @@ build_script:
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
   - bash -c "autoreconf -i"
-  - dir /a
   - mkdir build
   - cd build
   - bash -c "../configure --help"
