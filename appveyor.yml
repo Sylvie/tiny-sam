@@ -30,7 +30,7 @@ build_script:
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
   - bash -c "autoreconf -i"
-  - type .version
+  - type .\.version
   - mkdir build
   - cd build
   - bash -c "../configure --help"
