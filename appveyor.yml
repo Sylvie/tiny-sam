@@ -49,7 +49,7 @@ artifacts:
 #- path: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
 
 # pushing entire folder as a zip archive
-- path: build/tiny-sam-%tinysam_version%-%PLATFORM%
+- path: build/tiny-sam-${tinysam_version}-%PLATFORM%
 
 #---------------------------------#
 #     deployment configuration    #
