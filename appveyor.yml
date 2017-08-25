@@ -30,6 +30,8 @@ build_script:
   - set sambada_program_suffix=".exe"
   - set sambada_static_linking="true"
   - bash -c "tinysam_version=$(./git-version-gen .version)"
+  - echo $(tinysam_version)
+  - echo %tinysam_version%
   - bash -c "autoreconf -i"
   - mkdir build
   - cd build
