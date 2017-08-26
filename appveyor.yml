@@ -27,9 +27,9 @@ platform: windows
 build_script:
   - SET PATH=C:\msys64\usr\bin;C:\msys64\mingw64\bin;%PATH%
   - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
-  - set sambada_program_suffix=".exe"
-  - set sambada_static_linking="true"
-  - set tinysam_version=(bash -c "./git-version-gen .version")
+  - set sambada_program_suffix ".exe"
+  - set sambada_static_linking "true"
+  - set tinysam_version (bash -c "./git-version-gen .version")
   - echo ${tinysam_version}
   - bash -c "autoreconf -i"
   - mkdir build
@@ -50,7 +50,7 @@ artifacts:
 #- path: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
 
 # pushing entire folder as a zip archive
-- path: build/tiny-sam-${tinysam_version}-%PLATFORM%
+- path: build\tiny-sam-${tinysam_version}-%PLATFORM%
 
 #---------------------------------#
 #     deployment configuration    #
