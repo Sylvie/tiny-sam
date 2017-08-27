@@ -41,7 +41,6 @@ git:
   depth: 100
 
 script:
-  - g++ --version
   - autoreconf -i
   - tinysam_version=$(./git-version-gen .version)
   - mkdir build
@@ -50,14 +49,6 @@ script:
   - make CXX=$COMPILER
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
-  - cd ..
-  - pwd
-  - ls
-  - ls -R
-  - cat .version
-  - git tag
-  - git describe --always
-  - build/hello
 
 deploy:
   provider: releases

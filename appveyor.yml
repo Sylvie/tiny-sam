@@ -26,18 +26,13 @@ platform: windows
 
 build_script:
   - SET PATH=C:\msys64\usr\bin;C:\msys64\mingw64\bin;%PATH%;C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64;C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\x86_64-w64-mingw32;
-  - ps: IF (!(Test-Path VERSION)) {New-Item VERSION -itemtype file}
   - ps: $env:tinysam_version=(bash -c './git-version-gen .version')
-  - ps: echo $env:tinysam_version
   - bash -c "autoreconf -i"
   - mkdir build
   - cd build
-  - bash -c "../configure --help"
   - bash -c "../configure tinysamhostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 LDFLAGS=-static"
   - make.exe
   - make.exe binary-archive
-  - ps: .\hello.exe
-  - ls -R C:\projects\tiny-sam\
 
 #---------------------------------#
 #      artifacts configuration    #
