@@ -70,6 +70,7 @@ latexmk       \
 lm-math       \
 logreq        \
 pgf           \
+texlive-lang-french \
 tools         \
 ulem          \
 units         \
