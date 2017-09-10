@@ -5,10 +5,12 @@ dnl Finally run make to generate the project.
 AC_INIT([Tiny Sam], m4_esyscmd([./git-version-gen .tarball-version]), [sylvie.stucki@a3.epfl.ch], [tiny-sam], [lasig.epfl.ch/sambada])
 AM_INIT_AUTOMAKE([foreign subdir-objects dist-zip])
 
+tinysam_releasedate=m4_esyscmd([./git-releasedate-gen .tarball-releasedate])
+AC_SUBST(tinysam_releasedate)
+
 AC_PROG_CXX
 
 AC_CONFIG_FILES([Makefile])
-
 
 # AC_CANONICAL_HOST is needed to access the 'host_os' variable
 AC_CANONICAL_HOST

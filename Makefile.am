@@ -1,11 +1,14 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = $(top_srcdir)/.version
-BUILT_SOURCES = $(top_srcdir)/.version
+EXTRA_DIST = $(top_srcdir)/.version $(top_srcdir)/.releasedate
+BUILT_SOURCES = $(top_srcdir)/.version $(top_srcdir)/.releasedate
 $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
+$(top_srcdir)/.releasedate:
+	echo $(tinysam_releasedate) > $@-t && mv $@-t $@
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
+	echo $(tinysam_releasedate) > $(distdir)/.tarball-releasedate
 
 bin_PROGRAMS = hello
 hello_SOURCES = src/hello.cpp
