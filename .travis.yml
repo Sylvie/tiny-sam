@@ -1,6 +1,6 @@
 # Use new trusty images, should yield newer compilers and packages
 sudo: false          # false (Docker) or required (own VM)
-dist: precise
+dist: trusty
 language: generic
 
 matrix:
