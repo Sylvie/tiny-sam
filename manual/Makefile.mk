@@ -4,6 +4,7 @@ manual_sources := $(top_srcdir)/manual/$(manual_filename) $(top_srcdir)/manual/b
 manual_pdf := $(builddir)/manual/manual.pdf
 
 EXTRA_DIST += $(manual_sources) $(top_srcdir)/manual/latexmkrc_template $(builddir)/manual/latexmkrc
+BUILT_SOURCES += manual/latexmkrc
 
 if HAVE_LATEXMK
 EXTRA_DIST += $(manual_pdf)
@@ -15,10 +16,20 @@ LATEXMK_CLEAN = $(LATEXMK) -r ../$(builddir)/manual/latexmkrc
 prepare_manual_directory:
 	if [ "$(top_srcdir)" != "$(top_builddir)" ]; then \
 		mkdir -p $(manual_directory) && \
-		cp $(top_srcdir)/manual/bibliography.bib $(manual_directory) && \
-		cp $(top_srcdir)/manual/manual.tex $(manual_directory); \
+		if test $(top_srcdir)/manual/bibliography.bib -nt $(manual_directory)/bibliography.bib; then \
+			cp -f $(top_srcdir)/manual/bibliography.bib $(manual_directory); \
+		fi && \
+		if test $(top_srcdir)/manual/manual.tex -nt $(manual_directory)/manual.tex; then \
+			cp -f $(top_srcdir)/manual/manual.tex $(manual_directory); \
+		fi \
 	fi
+
+prepare_latexmkrc_file: | prepare_manual_directory
 	sed "s/%versionNumber%/$(VERSION)/g; s/%releaseDate%/$(tinysam_releasedate)/g" $(top_srcdir)/manual/latexmkrc_template > $(builddir)/manual/latexmkrc ;
+
+$(buildir)/manual/latexmkrc: prepare_latexmkrc_file
+
+manual/latexmkrc: prepare_latexmkrc_file
 
 pdf-local-manual : $(manual_pdf)
 
@@ -26,7 +37,7 @@ pdf-local-manual : $(manual_pdf)
 	$(LATEXMK_BUILD) -pdf $^
 
 binary-archive-local-manual:
-	cp $(manual_pdf) $(archive_basename)
+	cp -f $(manual_pdf) $(archive_basename)
 
 clean-local-manual:
 	if [ -d "$(manual_directory)" ] && [ -e "$(manual_directory)$(manual_filename)" ] ; then \
