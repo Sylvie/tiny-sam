@@ -47,6 +47,7 @@ script:
   - cd build
   - ../configure tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make CXX=$COMPILER
+  - make distcheck
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
 
