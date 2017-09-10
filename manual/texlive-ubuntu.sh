@@ -61,6 +61,7 @@ siunitx       \
 adobemapping  \
 amsfonts      \
 amsmath       \
+babel		  \
 biber         \
 biblatex      \
 ec            \
