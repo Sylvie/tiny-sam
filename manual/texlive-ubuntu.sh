@@ -66,13 +66,13 @@ babel-english  \
 babel-french  \
 biber         \
 biblatex      \
+carlisle	  \
 ec            \
 etoolbox      \
 latexmk       \
 lm-math       \
 logreq        \
 pgf           \
-scalefnt	  \
 tools         \
 ulem          \
 units         \
