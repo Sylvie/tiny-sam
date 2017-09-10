@@ -62,6 +62,7 @@ adobemapping  \
 amsfonts      \
 amsmath       \
 babel		  \
+babel-french  \
 biber         \
 biblatex      \
 ec            \
@@ -70,7 +71,6 @@ latexmk       \
 lm-math       \
 logreq        \
 pgf           \
-texlive-lang-french \
 tools         \
 ulem          \
 units         \
