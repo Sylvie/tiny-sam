@@ -4,6 +4,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french,english]{babel}
 
+\usepackage[useregional]{datetime2}
+
+\def\printdate#1{\expandafter\printdateprivate#1\relax}
+\def\printdateprivate#1-#2-#3\relax{ \expandafter\DTMdisplaydate{#1}{#2}{#3}{-1} }
+
 \ifdefined\versionnumber
 
 \else
@@ -11,9 +16,9 @@
 \fi
 
 \ifdefined\releasedate
-
+	\date{ \printdate{\releasedate} }
 \else
-  \newcommand{\releasedate}{\today} 
+ 
 \fi
 
 \usepackage[
