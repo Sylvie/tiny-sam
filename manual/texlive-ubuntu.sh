@@ -67,9 +67,9 @@ babel-french  \
 biber         \
 biblatex      \
 carlisle	  \
+etoolbox      \
 datetime2     \
 ec            \
-etoolbox      \
 latexmk       \
 lm-math       \
 logreq        \
