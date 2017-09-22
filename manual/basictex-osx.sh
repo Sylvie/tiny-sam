@@ -40,6 +40,7 @@ siunitx       \
 adobemapping  \
 biber         \
 biblatex      \
+datetime2     \
 latexmk       \
 lm-math       \
 logreq        \

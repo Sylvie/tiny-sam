@@ -62,11 +62,12 @@ adobemapping  \
 amsfonts      \
 amsmath       \
 babel		  \
-babel-english  \
+babel-english \
 babel-french  \
 biber         \
 biblatex      \
 carlisle	  \
+datetime2     \
 ec            \
 etoolbox      \
 latexmk       \
