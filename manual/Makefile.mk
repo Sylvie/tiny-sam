@@ -27,14 +27,12 @@ prepare_manual_directory:
 prepare_latexmkrc_file: | prepare_manual_directory
 	sed "s/%versionNumber%/$(VERSION)/g; s/%releaseDate%/$(tinysam_releasedate)/g" $(top_srcdir)/manual/latexmkrc_template > $(builddir)/manual/latexmkrc ;
 
-$(buildir)/manual/latexmkrc: prepare_latexmkrc_file
-
 manual/latexmkrc: prepare_latexmkrc_file
 
-pdf-local-manual : $(manual_pdf)
+pdf-local-manual: $(manual_pdf) manual/latexmkrc
 
-%.pdf : %.tex | prepare_manual_directory
-	$(LATEXMK_BUILD) -pdf $^
+%.pdf : %.tex manual/latexmkrc
+	$(LATEXMK_BUILD) -pdf $<
 
 binary-archive-local-manual:
 	cp -f $(manual_pdf) $(archive_basename)
