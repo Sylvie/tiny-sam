@@ -67,14 +67,16 @@ babel-french  \
 biber         \
 biblatex      \
 carlisle	  \
-etoolbox      \
 datetime2     \
+etoolbox      \
 ec            \
+etoolbox      \
 latexmk       \
 lm-math       \
 logreq        \
 pgf           \
 tools         \
+tracklang     \
 ulem          \
 units         \
 url           \

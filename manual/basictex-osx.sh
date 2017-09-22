@@ -40,11 +40,12 @@ siunitx       \
 adobemapping  \
 biber         \
 biblatex      \
-etoolbox	  \
 datetime2     \
+etoolbox	  \
 latexmk       \
 lm-math       \
 logreq        \
+tracklang     \
 units         \
 xstring
 
