@@ -35,12 +35,13 @@ sudo tlmgr install graphics-def
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # Dependencies other than the core l3build set up, metafont, fontspec and the
 # 'graphics stack' (itself needed by fontspec) are listed below
-sudo tlmgr install --no-depends \
+sudo tlmgr install \
 siunitx       \
 adobemapping  \
 biber         \
 biblatex      \
 datetime2     \
+etoolbox	  \
 latexmk       \
 lm-math       \
 logreq        \

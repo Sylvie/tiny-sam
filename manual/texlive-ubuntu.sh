@@ -56,7 +56,7 @@ tlmgr install ifluatex lm lualibs luaotfload
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # Dependencies other than the core l3build set up, metafont, fontspec and the
 # 'graphics stack' (itself needed by fontspec) are listed below
-tlmgr install --no-depends \
+tlmgr install \
 siunitx       \
 adobemapping  \
 amsfonts      \
