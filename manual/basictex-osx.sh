@@ -47,6 +47,7 @@ lm-math       \
 logreq        \
 tracklang     \
 units         \
+xkeyval		  \
 xstring
 
 # Keep no backups (not required, simply makes cache bigger)

@@ -81,6 +81,7 @@ ulem          \
 units         \
 url           \
 xcolor        \
+xkeyval		  \
 xstring       \
 xunicode
 
