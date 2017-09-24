@@ -41,6 +41,8 @@ adobemapping  \
 biber         \
 biblatex      \
 datetime2     \
+datetime2-english \
+datetime2-french  \
 etoolbox	  \
 latexmk       \
 lm-math       \

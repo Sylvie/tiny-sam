@@ -68,6 +68,8 @@ biber         \
 biblatex      \
 carlisle	  \
 datetime2     \
+datetime2-english \
+datetime2-french  \
 etoolbox      \
 ec            \
 etoolbox      \
