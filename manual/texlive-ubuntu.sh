@@ -73,6 +73,7 @@ datetime2-french  \
 etoolbox      \
 ec            \
 etoolbox      \
+ifxetex		  \
 latexmk       \
 lm-math       \
 logreq        \

@@ -44,6 +44,7 @@ datetime2     \
 datetime2-english \
 datetime2-french  \
 etoolbox	  \
+ifxetex		  \
 latexmk       \
 lm-math       \
 logreq        \
