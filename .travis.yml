@@ -51,8 +51,6 @@ script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
   - cd ..
-  - pwd
-  - ls -R
 
 deploy:
   provider: releases
