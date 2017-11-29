@@ -31,7 +31,7 @@ MOSTLYCLEANFILES =
 CLEANFILES =
 DISTCLEANFILES =
 MAINTAINERCLEANFILES =
-REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing)
+REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing test-driver)
 
 clean-local: clean-local-manual
 
@@ -41,3 +41,9 @@ repo-clean: maintainer-clean
 	rm -rf $(REPOCLEANFILES)
 
 include manual/Makefile.mk
+
+noinst_PROGRAMS =
+TESTS =
+
+include test/Makefile.mk
+
