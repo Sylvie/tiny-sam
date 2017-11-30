@@ -42,6 +42,8 @@ repo-clean: maintainer-clean
 
 include manual/Makefile.mk
 
+AM_CPPFLAGS = -I$(top_srcdir)/src
+
 noinst_PROGRAMS =
 TESTS =
 
