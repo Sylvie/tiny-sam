@@ -11,7 +11,7 @@ dist-hook:
 	echo $(tinysam_releasedate) > $(distdir)/.tarball-releasedate
 
 bin_PROGRAMS = hello
-hello_SOURCES = src/hello.cpp
+hello_SOURCES = src/hello.cpp src/GreetingsProvider.cpp src/GreetingsProvider.hpp
 
 pdf-local: pdf-local-manual
 
