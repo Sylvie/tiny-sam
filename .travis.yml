@@ -12,7 +12,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-5
+            - g++-7
             - libunittest++-dev
       install:
         - source ./manual/texlive-ubuntu.sh
@@ -20,10 +20,10 @@ matrix:
         directories:
           - /tmp/texlive
           - $HOME/.texlive
-      env: COMPILER=g++-5
+      env: COMPILER=g++-7
     - os: osx
       compiler: gcc
-      env: COMPILER=g++
+      env: COMPILER=g++7
       install:
         - source ./manual/basictex-osx.sh
         - ls /usr/local/texlive/
@@ -41,7 +41,7 @@ git:
   depth: 100
 
 script:
-  - autoreconf -i
+  - autoreconf -i CXXFLAGS="-std=c++11"
   - tinysam_version=$(./git-version-gen .version)
   - mkdir build
   - cd build
