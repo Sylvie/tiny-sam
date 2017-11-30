@@ -35,6 +35,13 @@ build_script:
   - make.exe binary-archive
 
 #---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+# to run your custom scripts instead of automatic tests
+test_script:
+  - make check
+
+#---------------------------------#
 #      artifacts configuration    #
 #---------------------------------#
 artifacts:
@@ -68,8 +75,8 @@ deploy:
 #- do something
 
 # on build failure
-#on_failure:
-#- do something
+on_failure:
+- cat build/test-suite.log
 
 # after build failure or success
 #on_finish:

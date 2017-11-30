@@ -52,6 +52,9 @@ script:
   - make binary-archive
   - cd ..
 
+after_failure:
+  - cat build/test-suite.log
+
 deploy:
   provider: releases
   api_key:
