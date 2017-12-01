@@ -20,10 +20,14 @@ matrix:
         directories:
           - /tmp/texlive
           - $HOME/.texlive
-      env: COMPILER=g++-7
+      env:
+        - COMPILER=g++-7
+        - CCOMPILER=gcc-7
     - os: osx
       compiler: gcc
-      env: COMPILER=g++7
+      env:
+        - COMPILER=g++-7
+        - CCOMPILER=gcc-7
       install:
         - source ./manual/basictex-osx.sh
         - ls /usr/local/texlive/
@@ -45,14 +49,16 @@ script:
   - tinysam_version=$(./git-version-gen .version)
   - mkdir build
   - cd build
-  - ../configure CXXFLAGS="-std=c++11" CXX=g++-7 CC=gcc-7 tinysamhostsystemname=${TRAVIS_OS_NAME}
-  - make CXX=$COMPILER
-  - make distcheck CXXFLAGS="-std=c++11" CXX=g++-7 CC=gcc-7
+  - ../configure CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER tinysamhostsystemname=${TRAVIS_OS_NAME}
+  - make
+  - make distcheck CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
   - cd ..
 
 after_failure:
+  - pwd
+  - ls
   - cat build/test-suite.log
 
 deploy:
