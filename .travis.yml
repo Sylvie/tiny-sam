@@ -59,7 +59,7 @@ script:
 after_failure:
   - pwd
   - ls
-  - cat build/test-suite.log
+  - cat build/tiny-sam-${tinysam_version}/_build/test-suite.log
 
 deploy:
   provider: releases
