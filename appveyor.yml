@@ -17,7 +17,7 @@ install:
   - ps: choco install miktex
   - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
   - ps: initexmf --admin --set-config-value [MPM]AutoInstall=1
-  - ps: mpm --admin --install=miktex-biber-bin-x64
+  - ps: mpm --admin --update
 
 #---------------------------------#
 #       build configuration       #
