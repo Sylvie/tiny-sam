@@ -77,9 +77,8 @@ deploy:
 
 # on build failure
 on_failure:
-  - ps: pwd
-  - ps: ls -R
-  - cat build/test-suite.log
+  # We are already in build directory
+  - cat test-suite.log
 
 # after build failure or success
 #on_finish:
