@@ -51,8 +51,8 @@ script:
   - cd build
   - ../configure CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make
+  - make check
   - make distcheck CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER
-  - cp tiny-sam-${tinysam_version}/_build/sub/test-suite.log .
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
   - cd ..
