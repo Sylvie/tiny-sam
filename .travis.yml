@@ -12,8 +12,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-7
-            - libunittest++-dev
+            - g++-4.9
       install:
         - source ./manual/texlive-ubuntu.sh
       cache:
@@ -21,13 +20,13 @@ matrix:
           - /tmp/texlive
           - $HOME/.texlive
       env:
-        - COMPILER=g++-7
-        - CCOMPILER=gcc-7
+        - CXX=g++-4.9
+        - CC=gcc-4.9
     - os: osx
       compiler: gcc
       env:
-        - COMPILER=g++-7
-        - CCOMPILER=gcc-7
+        - CXX=g++-4.9
+        - CC=gcc-4.9
       install:
         - source ./manual/basictex-osx.sh
         - ls /usr/local/texlive/
@@ -49,18 +48,15 @@ script:
   - tinysam_version=$(./git-version-gen .version)
   - mkdir build
   - cd build
-  - ../configure CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER tinysamhostsystemname=${TRAVIS_OS_NAME}
+  - ../configure CXXFLAGS="-std=c++11" tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make
   - make check
-  - make distcheck CXXFLAGS="-std=c++11" CXX=$COMPILER CC=$CCOMPILER
+  - make distcheck CXXFLAGS="-std=c++11"
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
   - cd ..
 
 after_failure:
-  - pwd
-  - ls
-  - ls -R build/
   - cat build/test-suite.log
 
 deploy:
