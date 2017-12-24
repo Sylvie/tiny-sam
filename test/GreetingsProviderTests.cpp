@@ -12,7 +12,7 @@ TEST_CASE( "Hello World" )
 	
 	SECTION( "Hello World has the right length" )
 	{
-		REQUIRE( greetingsProvider.sayHelloWorld().size() == 12 );
+		REQUIRE( greetingsProvider.sayHelloWorld().size() == 13 );
 	}
 	
 }
