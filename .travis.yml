@@ -1,7 +1,7 @@
 # Use new trusty images, should yield newer compilers and packages
 sudo: false          # false (Docker) or required (own VM)
 dist: trusty
-language: generic
+language: cpp
 
 matrix:
   include:
@@ -20,13 +20,11 @@ matrix:
           - /tmp/texlive
           - $HOME/.texlive
       env:
-        - CXX=g++-4.9
-        - CC=gcc-4.9
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
     - os: osx
       compiler: gcc
       env:
-        - CXX=g++-4.9
-        - CC=gcc-4.9
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
       install:
         - source ./manual/basictex-osx.sh
         - ls /usr/local/texlive/
