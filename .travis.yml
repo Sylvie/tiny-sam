@@ -12,7 +12,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-4.9
+            - g++-7
       install:
         - source ./manual/texlive-ubuntu.sh
       cache:
@@ -20,11 +20,12 @@ matrix:
           - /tmp/texlive
           - $HOME/.texlive
       env:
-        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - LDFLAGS=-static
     - os: osx
       compiler: gcc
       env:
-        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+        - MATRIX_EVAL="brew cask uninstall oclint && brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
       install:
         - source ./manual/basictex-osx.sh
         - ls /usr/local/texlive/
@@ -36,7 +37,8 @@ matrix:
           - /usr/texbin/
           - /Library/TeX/
           - /Library/PreferencePanes/
-
+before_install:
+    - eval "${MATRIX_EVAL}"
 
 git:
   depth: 100
