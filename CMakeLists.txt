@@ -18,11 +18,11 @@ set(CATCH_SRCS
 )
 
 set(FactorialTests
-        test/factorial.cpp
+        test/unit/factorial.cpp
 )
 
 set(GreetingsProviderTests
-        test/GreetingsProviderTests.cpp
+        test/unit/GreetingsProviderTests.cpp
         src/GreetingsProvider.cpp
         src/GreetingsProvider.hpp
 )
