@@ -9,3 +9,7 @@ test_unit_GreetingsProviderTests_CPPFLAGS = -I $(top_srcdir)/src -I $(top_srcdir
 
 test_unit_UnitTests_SOURCES = test/unit/factorial.cpp test/unit/GreetingsProviderTests.cpp src/GreetingsProvider.cpp src/GreetingsProvider.hpp ${catch_source_files}
 test_unit_UnitTests_CPPFLAGS = -I $(top_srcdir)/src -I $(top_srcdir)/test
+
+## Cleaning ##
+clean-local-test-unit:
+	 $(RM) -rf $(addsuffix .dSYM , $(TESTS))
