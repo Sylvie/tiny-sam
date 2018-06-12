@@ -12,6 +12,11 @@ add_executable(hello
         src/hello.cpp
 )
 
+set_target_properties(hello
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/src"
+        )
+
 set(CATCH_SRCS
         test/catch.hpp
         test/main-catch.cpp
@@ -32,3 +37,8 @@ add_executable(UnitTests
         ${GreetingsProviderTests}
         ${CATCH_SRCS}
 )
+
+set_target_properties(UnitTests
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/unit"
+        )

@@ -14,8 +14,8 @@ dist-hook:
 
 ## Binaries ##
 
-bin_PROGRAMS = hello
-hello_SOURCES = src/hello.cpp src/GreetingsProvider.cpp src/GreetingsProvider.hpp
+bin_PROGRAMS =
+include src/Makefile.mk
 
 ## Tests ##
 
@@ -54,7 +54,7 @@ DISTCLEANFILES =
 MAINTAINERCLEANFILES =
 REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing test-driver)
 
-clean-local: clean-local-test clean-local-manual
+clean-local: clean-local-src clean-local-test clean-local-manual
 
 distclean-local: distclean-local-manual
 
