@@ -2,6 +2,7 @@
 
 class GreetingsProvider
 {
-	public:
-		virtual std::string sayHelloWorld() const;
+public:
+    virtual std::string sayHelloWorld() const;
+    virtual void writeHelloWorld() const;
 };

@@ -10,7 +10,7 @@ add_executable(hello
         src/GreetingsProvider.cpp
         src/GreetingsProvider.hpp
         src/hello.cpp
-)
+        )
 
 set_target_properties(hello
         PROPERTIES
@@ -20,25 +20,40 @@ set_target_properties(hello
 set(CATCH_SRCS
         test/catch.hpp
         test/main-catch.cpp
-)
+        )
 
 set(FactorialTests
         test/unit/factorial.cpp
-)
+        )
 
 set(GreetingsProviderTests
         test/unit/GreetingsProviderTests.cpp
         src/GreetingsProvider.cpp
         src/GreetingsProvider.hpp
-)
+        )
 
 add_executable(UnitTests
         ${FactorialTests}
         ${GreetingsProviderTests}
         ${CATCH_SRCS}
-)
+        )
 
 set_target_properties(UnitTests
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/unit"
         )
+
+set(IntegrationTests
+        test/integration/HelloIntegrationTests.cpp
+        )
+
+add_executable(IntegrationTests
+        ${IntegrationTests}
+        ${CATCH_SRCS}
+        )
+
+set_target_properties(IntegrationTests
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/integration"
+        )
+

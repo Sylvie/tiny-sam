@@ -60,4 +60,3 @@ distclean-local: distclean-local-manual
 
 repo-clean: maintainer-clean
 	rm -rf $(REPOCLEANFILES)
-
