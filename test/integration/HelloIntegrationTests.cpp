@@ -20,6 +20,18 @@ std::string runCommand(std::string cmd) {
     return data;
 }
 
+std::string computePlatformSpecificProgramName(const std::string &baseProgramName) {
+    std::string programName(baseProgramName);
+    std::string programExtension("");
+#ifdef tiny_sam_executable_extension
+    programExtension = tiny_sam_executable_extension;
+#endif
+    if (programExtension.size() > 0)
+    {
+        programName += programExtension;
+    }
+    return programName;
+}
 
 SCENARIO("Tests can run external programs", "[run_program]") {
 
@@ -27,7 +39,7 @@ SCENARIO("Tests can run external programs", "[run_program]") {
     std::cout << "Variable: " << tiny_sam_executable_extension << std::endl;
 
     GIVEN("A program to run and its expected output file") {
-        std::string program("./src/hello");
+        std::string program(computePlatformSpecificProgramName("./src/hello"));
         std::string fileName("hello.txt");
 
         WHEN("we look for the program") {
@@ -62,7 +74,7 @@ SCENARIO("Tests can run external programs", "[run_program]") {
 
             std::cout << "This line was executed!" << std::endl;
             lecteur.close();
-            std::remove(fileName.c_str());
+           // std::remove(fileName.c_str());
 
         }
 
