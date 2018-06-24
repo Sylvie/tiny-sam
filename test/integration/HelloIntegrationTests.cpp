@@ -64,7 +64,7 @@ void runCommand(const std::string& path, const std::string& program, const std::
 #else
 void runCommand(const std::string& path, const std::string& program, const std::string& arguments) {
 
-    string command(path + program + arguments);
+    std::string command(path + program + arguments);
 
     std::string data;
     FILE *stream;
