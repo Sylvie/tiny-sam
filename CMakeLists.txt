@@ -4,7 +4,7 @@ project(tiny_sam)
 set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(
-        -Dtiny_sam_executable_suffix="${CMAKE_EXECUTABLE_SUFFIX}"
+        -Dtiny_sam_executable_extension="${CMAKE_EXECUTABLE_SUFFIX}"
 )
 
 include_directories(src)

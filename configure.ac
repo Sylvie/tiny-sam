@@ -57,9 +57,9 @@ AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
 
 # Pass the system's extension for executable to automake
-tiny_sam_executable_suffix=${EXEEXT}
-AC_MSG_NOTICE([tiny_sam_executable_suffix = ${tiny_sam_executable_suffix}])
-AC_SUBST(tiny_sam_executable_suffix)
+tiny_sam_executable_extension=${EXEEXT}
+AC_MSG_NOTICE([tiny_sam_executable_extension = ${tiny_sam_executable_extension}])
+AC_SUBST(tiny_sam_executable_extension)
 
 # Check for presence of latexmk
 AC_CHECK_PROG(LATEXMK, latexmk, latexmk)
