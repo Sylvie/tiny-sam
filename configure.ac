@@ -56,6 +56,11 @@ AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
 AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
 
+# Pass the system's extension for executable to automake
+tiny_sam_executable_suffix=${EXEEXT}
+AC_MSG_NOTICE([tiny_sam_executable_suffix = ${tiny_sam_executable_suffix}])
+AC_SUBST(tiny_sam_executable_suffix)
+
 # Check for presence of latexmk
 AC_CHECK_PROG(LATEXMK, latexmk, latexmk)
 if test -z "$LATEXMK"; then

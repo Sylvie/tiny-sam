@@ -9,7 +9,7 @@ std::string GreetingsProvider::sayHelloWorld() const {
 
 void GreetingsProvider::writeHelloWorld() const {
     std::string filename("hello.txt");
-    std::ofstream output(filename);
+    std::ofstream output(filename.c_str());
 
     std::cout << "Yop!" << std::endl;
     if (output.is_open())

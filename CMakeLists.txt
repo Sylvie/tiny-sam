@@ -3,6 +3,10 @@ project(tiny_sam)
 
 set(CMAKE_CXX_STANDARD 11)
 
+add_definitions(
+        -Dtiny_sam_executable_suffix="${CMAKE_EXECUTABLE_SUFFIX}"
+)
+
 include_directories(src)
 include_directories(test)
 
@@ -56,4 +60,8 @@ set_target_properties(IntegrationTests
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/integration"
         )
+
+add_dependencies(IntegrationTests
+        hello)
+
 

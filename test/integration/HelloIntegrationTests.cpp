@@ -23,7 +23,8 @@ std::string runCommand(std::string cmd) {
 
 SCENARIO("Tests can run external programs", "[run_program]") {
 
-    //std::cout << "Starting there: " + runCommand("pwd") << std::endl;
+    std::cout << "Starting there: " + runCommand("pwd") << std::endl;
+    std::cout << "Variable: " << tiny_sam_executable_suffix << std::endl;
 
     GIVEN("A program to run and its expected output file") {
         std::string program("./src/hello");
