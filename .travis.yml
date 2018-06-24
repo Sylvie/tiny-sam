@@ -51,6 +51,7 @@ script:
   - ../configure CXXFLAGS="-std=c++11" tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make
   - make check
+  - ls -R
   - make distcheck CXXFLAGS="-std=c++11"
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
