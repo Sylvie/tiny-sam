@@ -41,6 +41,7 @@ build_script:
 # to run your custom scripts instead of automatic tests
 test_script:
   - make check
+  - ls -R
 
 #---------------------------------#
 #      artifacts configuration    #
