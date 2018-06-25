@@ -16,8 +16,6 @@ HANDLE g_hChildStd_OUT_Wr = NULL;
 
 void CreateChildProcess(TCHAR szCmdline[]);
 void ReadFromPipe(void);
-void ErrorExit(PTSTR);
-
 
 void runCommandWithOutput(const std::string& command) {
 
@@ -40,19 +38,24 @@ void runCommandWithOutput(const std::string& command) {
 // Create a pipe for the child process's STDOUT.
 
     if ( ! CreatePipe(&g_hChildStd_OUT_Rd, &g_hChildStd_OUT_Wr, &saAttr, 0) )
-        ErrorExit(TEXT("StdoutRd CreatePipe"));
+    {
+        printf("CreatePipe: %u\n", GetLastError());
+        return;    }
 
 // Ensure the read handle to the pipe for STDOUT is not inherited.
 
     if ( ! SetHandleInformation(g_hChildStd_OUT_Rd, HANDLE_FLAG_INHERIT, 0) )
-        ErrorExit(TEXT("Stdout SetHandleInformation"));
-
+    {
+        printf("SetHandleInformation: %u\n", GetLastError());
+        return;
+    }
 
 // Create the child process.
 
     CreateChildProcess(commandCString );
 
     CloseHandle(g_hChildStd_OUT_Wr);
+
 
 
     // Read from pipe that is the standard output for child process.
@@ -67,7 +70,6 @@ void runCommandWithOutput(const std::string& command) {
 
 
     CloseHandle(g_hChildStd_OUT_Rd);
-
 
 
     //return "";
@@ -109,7 +111,10 @@ void CreateChildProcess(TCHAR szCmdline[])
 
     // If an error occurs, exit the application.
     if ( ! bSuccess )
-        ErrorExit(TEXT("CreateProcess"));
+        {
+            printf("CreateProcess: %u\n", GetLastError());
+            return;
+        }
     else
     {
         std::cout << "Waiting for the child to finish" << std::endl;
@@ -145,39 +150,6 @@ void ReadFromPipe(void)
         if (! bSuccess ) break;
     }
 }
-
-void ErrorExit(PTSTR lpszFunction)
-
-// Format a readable error message, display a message box,
-// and exit from the application.
-{
-    LPVOID lpMsgBuf;
-    LPVOID lpDisplayBuf;
-    DWORD dw = GetLastError();
-
-    FormatMessage(
-            FORMAT_MESSAGE_ALLOCATE_BUFFER |
-            FORMAT_MESSAGE_FROM_SYSTEM |
-            FORMAT_MESSAGE_IGNORE_INSERTS,
-            NULL,
-            dw,
-            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-            (LPTSTR) &lpMsgBuf,
-            0, NULL );
-
-    lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,
-                                      (lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR));
-    StringCchPrintf((LPTSTR)lpDisplayBuf,
-                    LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-                    TEXT("%s failed with error %d: %s"),
-                    lpszFunction, dw, lpMsgBuf);
-    MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
-
-    LocalFree(lpMsgBuf);
-    LocalFree(lpDisplayBuf);
-    ExitProcess(1);
-}
-
 
 #else
 void runCommandWithOutput(const std::string& command) {
