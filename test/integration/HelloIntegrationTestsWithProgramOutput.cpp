@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <algorithm>
 
-void runCommandWithOutput(const std::string& commandLine) {
+std::string runCommandWithOutput(const std::string& commandLine) {
     PROCESS_INFORMATION processInfo;
     STARTUPINFOA startupInfo;
     SECURITY_ATTRIBUTES saAttr;
@@ -40,15 +40,17 @@ void runCommandWithOutput(const std::string& commandLine) {
     // Create a pipe for the child process's STDOUT.
     if (!CreatePipe(&stdoutReadHandle, &stdoutWriteHandle, &saAttr, 5000))
     {
-        printf("CreatePipe: %u\n", GetLastError());
-        return;
+        std::string error("CreatePipe: " + std::to_string(GetLastError()) + "\n");
+        // printf("CreatePipe: %u\n", GetLastError());
+        return error;
     }
 
     // Ensure the read handle to the pipe for STDOUT is not inherited.
     if (!SetHandleInformation(stdoutReadHandle, HANDLE_FLAG_INHERIT, 0))
     {
-        printf("SetHandleInformation: %u\n", GetLastError());
-        return;
+        std::string error("SetHandleInformation: " + std::to_string(GetLastError()) + "\n");
+        // printf("SetHandleInformation: %u\n", GetLastError());
+        return error;
     }
 
     memset(&startupInfo, 0, sizeof(startupInfo));
@@ -60,25 +62,27 @@ void runCommandWithOutput(const std::string& commandLine) {
 
     // memset(&processInfo, 0, sizeof(processInfo));  // Not actually necessary
 
-    printf("Starting.\n");
+    // printf("Starting.\n");
 
     if (!CreateProcess(NULL, cmdline, NULL, NULL, TRUE,
                         CREATE_NO_WINDOW, NULL, 0, &startupInfo, &processInfo))
     {
-        printf("CreateProcess: %u\n", GetLastError());
-        return;
+        std::string error("CreateProcess: " + std::to_string(GetLastError()) + "\n");
+        // printf("CreateProcess: %u\n", GetLastError());
+        return error;
     }
 
     CloseHandle(stdoutWriteHandle);
 
     for (;;) {
-        printf("Just before ReadFile(...)\n");
+        // printf("Just before ReadFile(...)\n");
         if (!ReadFile(stdoutReadHandle, tBuf, 256, &bytes_read, NULL))
         {
-            printf("ReadFile: %u\n", GetLastError());
+            std::string error("ReadFile: " + std::to_string(GetLastError()) + "\n");
+            // printf("ReadFile: %u\n", GetLastError());
             break;
         }
-        printf("Just after ReadFile, read %u byte(s)\n", bytes_read);
+        // printf("Just after ReadFile, read %u byte(s)\n", bytes_read);
         if (bytes_read > 0)
         {
             tBuf[bytes_read] = '\0';
@@ -86,30 +90,32 @@ void runCommandWithOutput(const std::string& commandLine) {
         }
     }
 
-    printf("Output: %s\n", data.c_str());
+    // printf("Output: %s\n", data.c_str());
 
     if (WaitForSingleObject(processInfo.hProcess, INFINITE) != WAIT_OBJECT_0)
     {
-        printf("WaitForSingleObject: %u\n", GetLastError());
-        return;
+        std::string error("WaitForSingleObject: " + std::to_string(GetLastError()) + "\n");
+        // printf("WaitForSingleObject: %u\n", GetLastError());
+        return error;
     }
 
     if (!GetExitCodeProcess(processInfo.hProcess, &exitcode))
     {
-        printf("GetExitCodeProcess: %u\n", GetLastError());
-        return;
+        std::string error("GetExitCodeProcess: " + std::to_string(GetLastError()) + "\n");
+        // printf("GetExitCodeProcess: %u\n", GetLastError());
+        return error;
     }
 
-    printf("Exit code: %u\n", exitcode);
+    // printf("Exit code: %u\n", exitcode);
 
     CloseHandle( processInfo.hProcess );
     CloseHandle( processInfo.hThread );
 
-    return;
+    return data;
 }
 
 #else
-void runCommandWithOutput(const std::string& command) {
+std::string runCommandWithOutput(const std::string& command) {
 
     std::string data;
     FILE *stream;
@@ -123,7 +129,7 @@ void runCommandWithOutput(const std::string& command) {
             if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
         pclose(stream);
     }
-   // return data;
+    return data;
 }
 #endif
 std::string computePlatformSpecificProgramName(const std::string &baseProgramName);
