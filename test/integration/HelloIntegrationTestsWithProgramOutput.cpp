@@ -5,150 +5,107 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 
+// Source:
+// https://stackoverflow.com/questions/10866944/how-can-i-read-a-child-processs-output
+
 #include <Windows.h>
-#include <stdlib.h>
-#include "strsafe.h"
+#include <stdio.h>
+#include <algorithm>
 
-#define BUFSIZE 4096
-
-HANDLE g_hChildStd_OUT_Rd = NULL;
-HANDLE g_hChildStd_OUT_Wr = NULL;
-
-void CreateChildProcess(TCHAR szCmdline[]);
-void ReadFromPipe(void);
-
-void runCommandWithOutput(const std::string& command) {
-
-    char commandCString[command.size() + 1];
-    command.copy(commandCString, command.size());
-    commandCString[command.size()] = '\0';
-
-
-
+void runCommandWithOutput(const std::string& commandLine) {
+    PROCESS_INFORMATION processInfo;
+    STARTUPINFOA startupInfo;
     SECURITY_ATTRIBUTES saAttr;
 
-    printf("\n->Start of parent execution.\n");
+    HANDLE stdoutReadHandle = NULL;
+    HANDLE stdoutWriteHandle = NULL;
 
-// Set the bInheritHandle flag so pipe handles are inherited.
+    char cmdline[1024];
+    std::string data;
+    DWORD bytes_read;
+    char tBuf[257];
 
+    DWORD exitcode;
+
+    std::string windowsCommandLine(commandLine);
+    std::replace( windowsCommandLine.begin(), windowsCommandLine.end(), '/', '\\'); // replace all 'x' to 'y'
+    windowsCommandLine.copy(cmdline, windowsCommandLine.size());
+    cmdline[windowsCommandLine.size()] = '\0';
+
+    memset(&saAttr, 0, sizeof(saAttr));
     saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
     saAttr.bInheritHandle = TRUE;
     saAttr.lpSecurityDescriptor = NULL;
 
-// Create a pipe for the child process's STDOUT.
-
-    if ( ! CreatePipe(&g_hChildStd_OUT_Rd, &g_hChildStd_OUT_Wr, &saAttr, 0) )
+    // Create a pipe for the child process's STDOUT.
+    if (!CreatePipe(&stdoutReadHandle, &stdoutWriteHandle, &saAttr, 5000))
     {
         printf("CreatePipe: %u\n", GetLastError());
-        return;    }
+        return;
+    }
 
-// Ensure the read handle to the pipe for STDOUT is not inherited.
-
-    if ( ! SetHandleInformation(g_hChildStd_OUT_Rd, HANDLE_FLAG_INHERIT, 0) )
+    // Ensure the read handle to the pipe for STDOUT is not inherited.
+    if (!SetHandleInformation(stdoutReadHandle, HANDLE_FLAG_INHERIT, 0))
     {
         printf("SetHandleInformation: %u\n", GetLastError());
         return;
     }
 
-// Create the child process.
+    memset(&startupInfo, 0, sizeof(startupInfo));
+    startupInfo.cb = sizeof(startupInfo);
+    startupInfo.hStdError = stdoutWriteHandle;
+    startupInfo.hStdOutput = stdoutWriteHandle;
+    startupInfo.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+    startupInfo.dwFlags |= STARTF_USESTDHANDLES;
 
-    CreateChildProcess(commandCString );
+    // memset(&processInfo, 0, sizeof(processInfo));  // Not actually necessary
 
-    CloseHandle(g_hChildStd_OUT_Wr);
+    printf("Starting.\n");
 
+    if (!CreateProcess(NULL, cmdline, NULL, NULL, TRUE,
+                        CREATE_NO_WINDOW, NULL, 0, &startupInfo, &processInfo))
+    {
+        printf("CreateProcess: %u\n", GetLastError());
+        return;
+    }
 
+    CloseHandle(stdoutWriteHandle);
 
-    // Read from pipe that is the standard output for child process.
-
-    printf( "\n->Contents of child process STDOUT:\n\n");
-    ReadFromPipe();
-
-    printf("\n->End of parent execution.\n");
-
-    // The remaining open handles are cleaned up when this process terminates.
-    // To avoid resource leaks in a larger application, close handles explicitly.
-
-
-    CloseHandle(g_hChildStd_OUT_Rd);
-
-
-    //return "";
-}
-
-void CreateChildProcess(TCHAR szCmdline[])
-// Create a child process that uses the previously created pipes for STDIN and STDOUT.
-{
-    PROCESS_INFORMATION piProcInfo;
-    STARTUPINFO siStartInfo;
-    BOOL bSuccess = FALSE;
-
-// Set up members of the PROCESS_INFORMATION structure.
-
-    ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
-
-// Set up members of the STARTUPINFO structure.
-// This structure specifies the STDIN and STDOUT handles for redirection.
-
-    ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
-    siStartInfo.cb = sizeof(STARTUPINFO);
-    siStartInfo.hStdError = g_hChildStd_OUT_Wr;
-    siStartInfo.hStdOutput = g_hChildStd_OUT_Wr;
-    siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
-
-// Create the child process.
-
-    bSuccess = CreateProcess(NULL,
-                             szCmdline,     // command line
-                             NULL,          // process security attributes
-                             NULL,          // primary thread security attributes
-                             TRUE,          // handles are inherited
-                             0,             // creation flags
-                             NULL,          // use parent's environment
-                             NULL,          // use parent's current directory
-                             &siStartInfo,  // STARTUPINFO pointer
-                             &piProcInfo);  // receives PROCESS_INFORMATION
-
-
-    // If an error occurs, exit the application.
-    if ( ! bSuccess )
+    for (;;) {
+        printf("Just before ReadFile(...)\n");
+        if (!ReadFile(stdoutReadHandle, tBuf, 256, &bytes_read, NULL))
         {
-            printf("CreateProcess: %u\n", GetLastError());
-            return;
+            printf("ReadFile: %u\n", GetLastError());
+            break;
         }
-    else
-    {
-        std::cout << "Waiting for the child to finish" << std::endl;
-        //WaitForSingleObject( piProcInfo.hProcess, INFINITE );
-
-        // Close handles to the child process and its primary thread.
-        // Some applications might keep these handles to monitor the status
-        // of the child process, for example.
-
-        CloseHandle(piProcInfo.hProcess);
-        CloseHandle(piProcInfo.hThread);
+        printf("Just after ReadFile, read %u byte(s)\n", bytes_read);
+        if (bytes_read > 0)
+        {
+            tBuf[bytes_read] = '\0';
+            data.append(tBuf);
+        }
     }
-}
 
-void ReadFromPipe(void)
+    printf("Output: %s\n", data.c_str());
 
-// Read output from the child process's pipe for STDOUT
-// and write to the parent process's pipe for STDOUT.
-// Stop when there is no more data.
-{
-    DWORD dwRead, dwWritten;
-    CHAR chBuf[BUFSIZE];
-    BOOL bSuccess = FALSE;
-    HANDLE hParentStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    for (;;)
+    if (WaitForSingleObject(processInfo.hProcess, INFINITE) != WAIT_OBJECT_0)
     {
-        bSuccess = ReadFile( g_hChildStd_OUT_Rd, chBuf, BUFSIZE, &dwRead, NULL);
-        if( ! bSuccess || dwRead == 0 ) break;
-
-        bSuccess = WriteFile(hParentStdOut, chBuf,
-                             dwRead, &dwWritten, NULL);
-        if (! bSuccess ) break;
+        printf("WaitForSingleObject: %u\n", GetLastError());
+        return;
     }
+
+    if (!GetExitCodeProcess(processInfo.hProcess, &exitcode))
+    {
+        printf("GetExitCodeProcess: %u\n", GetLastError());
+        return;
+    }
+
+    printf("Exit code: %u\n", exitcode);
+
+    CloseHandle( processInfo.hProcess );
+    CloseHandle( processInfo.hThread );
+
+    return;
 }
 
 #else
