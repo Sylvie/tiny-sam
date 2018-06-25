@@ -64,4 +64,18 @@ set_target_properties(IntegrationTests
 add_dependencies(IntegrationTests
         hello)
 
+if (WIN32)
+add_executable(CreateParentProcess
+        test/integration/CreateParentProcess.cpp
+        test/integration/strsafe.h)
 
+add_executable(CreateChildProcess
+        test/integration/CreateChildProcess.cpp)
+
+set_target_properties(
+        CreateParentProcess
+        CreateChildProcess
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/integration"
+        )
+endif (WIN32)
