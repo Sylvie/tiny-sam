@@ -49,6 +49,7 @@ set_target_properties(UnitTests
 
 set(IntegrationTests
         test/integration/HelloIntegrationTests.cpp
+        test/integration/HelloIntegrationTestsWithProgramOutput.cpp
         )
 
 add_executable(IntegrationTests
