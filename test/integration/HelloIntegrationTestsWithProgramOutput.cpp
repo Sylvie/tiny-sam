@@ -149,9 +149,7 @@ std::string computePlatformSpecificProgramName(const std::string &baseProgramNam
 */
 SCENARIO("Tests can run external programs and redirect standard output", "[run_program]") {
 
-    std::cout << "Starting there: ";
-    runCommandWithOutput("pwd");
-    std::cout << std::endl;
+    std::cout << "Starting there: " << runCommandWithOutput("pwd") << std::endl;
     std::cout << "Variable: " << tiny_sam_executable_extension << std::endl;
 
     GIVEN("A program to run and its expected output file") {
@@ -160,9 +158,7 @@ SCENARIO("Tests can run external programs and redirect standard output", "[run_p
         std::string fileName("hello.txt");
 
         WHEN("we look for the program") {
-            std::cout << "Here we are: ";
-            runCommandWithOutput("pwd");
-            std::cout << std::endl;
+            std::cout << "Here we are: " << runCommandWithOutput("pwd") << std::endl;
 
             std::ifstream programFile(program.c_str());
 
@@ -173,7 +169,8 @@ SCENARIO("Tests can run external programs and redirect standard output", "[run_p
         }
 
         WHEN("the program is run") {
-            runCommandWithOutput(program);
+
+            std::cout << "Output from program:\n" << runCommandWithOutput(program) << std::endl;
 
             std::ifstream lecteur(fileName.c_str());
 
