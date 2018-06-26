@@ -47,6 +47,23 @@ set_target_properties(UnitTests
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/unit"
         )
 
+set(IntegrationTestUtils
+        test/integration/utils/TinySamIntegrationTestUtils.h
+        test/integration/utils/TinySamIntegrationTestUtils.cpp
+        )
+
+if (WIN32)
+        set(IntegrationTestUtils
+                ${IntegrationTestUtils}
+                test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
+                )
+else ()
+        set(IntegrationTestUtils
+                ${IntegrationTestUtils}
+                test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
+                )
+endif (WIN32)
+
 set(IntegrationTests
         test/integration/HelloIntegrationTests.cpp
         test/integration/HelloIntegrationTestsWithProgramOutput.cpp
@@ -54,6 +71,7 @@ set(IntegrationTests
 
 add_executable(IntegrationTests
         ${IntegrationTests}
+        ${IntegrationTestUtils}
         ${CATCH_SRCS}
         )
 

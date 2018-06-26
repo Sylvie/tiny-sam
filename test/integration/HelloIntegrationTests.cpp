@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include "utils/TinySamIntegrationTestUtils.h"
 
 #if defined(_WIN32) || defined(_WIN64)
 
@@ -95,25 +96,20 @@ std::string computePlatformSpecificProgramName(const std::string &baseProgramNam
     return programName;
 }
 
-SCENARIO("Tests can run external programs", "[run_program]") {
+SCENARIO("Tests can run external programs", "[run_program][hide]") {
 
-    std::cout << "Starting there: ";
-    runCommand("", "pwd", "");
-    std::cout << std::endl;
+    std::cout << "Starting there: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
     std::cout << "Variable: " << tiny_sam_executable_extension << std::endl;
 
     GIVEN("A program to run and its expected output file") {
-        std::string path("./src/");
-        std::string program(computePlatformSpecificProgramName("hello"));
+        std::string program(computePlatformSpecificProgramName("./src/hello"));
 
         std::string fileName("hello.txt");
 
         WHEN("we look for the program") {
-            std::cout << "Here we are: ";
-            runCommand("", "pwd", "");
-            std::cout << std::endl;
+            std::cout << "Here we are: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
 
-            std::ifstream programFile((path+program).c_str());
+            std::ifstream programFile(program.c_str());
 
             THEN("the program is found") {
                 REQUIRE(programFile.good());
@@ -122,7 +118,7 @@ SCENARIO("Tests can run external programs", "[run_program]") {
         }
 
         WHEN("the program is run") {
-            runCommand(path, program, "");
+            TinySamIntegrationTestUtils::runCommand(program);
 
             std::ifstream lecteur(fileName.c_str());
 
@@ -142,10 +138,11 @@ SCENARIO("Tests can run external programs", "[run_program]") {
 
             std::cout << "This line was executed!" << std::endl;
             lecteur.close();
-           // std::remove(fileName.c_str());
+            std::remove(fileName.c_str());
 
         }
 
 
     }
 }
+
