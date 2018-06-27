@@ -22,6 +22,7 @@ include src/Makefile.mk
 AM_CPPFLAGS = -I$(top_srcdir)/src
 
 noinst_PROGRAMS =
+noinst_LIBRARIES =
 TESTS =
 
 include test/Makefile.mk

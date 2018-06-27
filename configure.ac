@@ -9,6 +9,8 @@ tinysam_releasedate=m4_esyscmd([./git-releasedate-gen .tarball-releasedate])
 AC_SUBST(tinysam_releasedate)
 
 AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_RANLIB
 
 AC_CONFIG_FILES([Makefile])
 

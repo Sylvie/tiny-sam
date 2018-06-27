@@ -1,4 +1,4 @@
-noinst_LIBRARIES += test/integration/utils/TinySamIntegrationTestUtils
+noinst_LIBRARIES += test/integration/utils/TinySamIntegrationTestUtils.a
 
 test_integration_utils_TinySamIntegrationTestUtils_a_SOURCES = \
     test/integration/utils/TinySamIntegrationTestUtils.cpp
