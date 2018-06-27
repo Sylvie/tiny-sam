@@ -1,6 +1,6 @@
 #include "TinySamIntegrationTestUtils.h"
 
-#if defined(_UNIX)
+#if defined(__unix__)
 
 std::string TinySamIntegrationTestUtils::runCommand(const std::string& command) {
 
@@ -8,9 +8,9 @@ std::string TinySamIntegrationTestUtils::runCommand(const std::string& command) 
     FILE *stream;
     const int max_buffer = 256;
     char buffer[max_buffer];
-    command.append(" 2>&1");
+    std::string commandLine(command + " 2>&1");
 
-    stream = popen(command.c_str(), "r");
+    stream = popen(commandLine.c_str(), "r");
     if (stream) {
         while (!feof(stream))
             if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
