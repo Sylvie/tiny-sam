@@ -4,105 +4,13 @@
 #include <fstream>
 #include "utils/TinySamIntegrationTestUtils.h"
 
-#if defined(_WIN32) || defined(_WIN64)
-
-#include <Windows.h>
-#include <stdlib.h>
-
-void runCommand(const std::string& path, const std::string& program, const std::string& arguments) {
-
-   // char szPath[] = *cmd[0];
-    std::string programWithPath(path + program);
-
-    std::string command(path + program + arguments);
-
-    char pathCString[path.size() + 1];
-    path.copy(pathCString, path.size());
-    pathCString[path.size()] = '\0';
-
-    char commandCString[command.size() + 1];
-    command.copy(commandCString, command.size());
-    commandCString[command.size()] = '\0';
-
-    // Gives info on the thread and process for the new process
-    PROCESS_INFORMATION pif;
-
-    // Defines how to start the program
-    STARTUPINFO si;
-
-    // Zero the STARTUPINFO struct
-    ZeroMemory( &si, sizeof( si ) );
-
-    // Must set size of structure
-    si.cb = sizeof( si );
-
-    BOOL bRet = CreateProcess( /*programWithPath.c_str()*/ NULL, // Path to executable file
-                               commandCString,   // Command string - not needed here
-                               NULL,   // Process handle not inherited
-                               NULL,   // Thread handle not inherited
-                               FALSE,  // No inheritance of handles
-                               0,      // No special flags
-                               NULL,   // Same environment block as this prog
-                               /*path.c_str()*/ NULL,   // Current directory - no separate path
-                               &si,    // Pointer to STARTUPINFO
-                               &pif ); // Pointer to PROCESS_INFORMATION
-
-    if( FALSE == bRet )
-    {
-        printf( "CreateProcess failed (%d).\n", GetLastError() );
-        return;
-    }
-
-    // Close handle to process
-    CloseHandle( pif.hProcess );
-
-    // Close handle to thread
-    CloseHandle( pif.hThread );
-
-    //return "";
-}
-
-#else
-void runCommand(const std::string& path, const std::string& program, const std::string& arguments) {
-
-    std::string command(path + program + arguments);
-
-    std::string data;
-    FILE *stream;
-    const int max_buffer = 256;
-    char buffer[max_buffer];
-    command.append(" 2>&1");
-
-    stream = popen(command.c_str(), "r");
-    if (stream) {
-        while (!feof(stream))
-            if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
-        pclose(stream);
-    }
-   // return data;
-}
-#endif
-
-std::string computePlatformSpecificProgramName(const std::string &baseProgramName) {
-    std::string programName(baseProgramName);
-    std::string programExtension("");
-#ifdef tiny_sam_executable_extension
-    programExtension = tiny_sam_executable_extension;
-#endif
-    if (programExtension.size() > 0)
-    {
-        programName += programExtension;
-    }
-    return programName;
-}
-
 SCENARIO("Tests can run external programs", "[run_program][hide]") {
 
     std::cout << "Starting there: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
     std::cout << "Variable: " << tiny_sam_executable_extension << std::endl;
 
     GIVEN("A program to run and its expected output file") {
-        std::string program(computePlatformSpecificProgramName("./src/hello"));
+        std::string program(TinySamIntegrationTestUtils::computePlatformSpecificProgramName("./src/hello"));
 
         std::string fileName("hello.txt");
 
