@@ -53,20 +53,19 @@ set(IntegrationTestUtils
         )
 
 if (WIN32)
-        set(IntegrationTestUtils
-                ${IntegrationTestUtils}
-                test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
-                )
+    set(IntegrationTestUtils
+            ${IntegrationTestUtils}
+            test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
+            )
 else ()
-        set(IntegrationTestUtils
-                ${IntegrationTestUtils}
-                test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
-                )
+    set(IntegrationTestUtils
+            ${IntegrationTestUtils}
+            test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
+            )
 endif (WIN32)
 
 set(IntegrationTests
         test/integration/HelloIntegrationTests.cpp
-        test/integration/HelloIntegrationTestsWithProgramOutput.cpp
         )
 
 add_executable(IntegrationTests
@@ -84,17 +83,17 @@ add_dependencies(IntegrationTests
         hello)
 
 if (WIN32)
-add_executable(CreateParentProcess
-        test/integration/CreateParentProcess.cpp
-        test/integration/strsafe.h)
+    add_executable(CreateParentProcess
+            test/integration/CreateParentProcess.cpp
+            test/integration/strsafe.h)
 
-add_executable(CreateChildProcess
-        test/integration/CreateChildProcess.cpp)
+    add_executable(CreateChildProcess
+            test/integration/CreateChildProcess.cpp)
 
-set_target_properties(
-        CreateParentProcess
-        CreateChildProcess
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/integration"
-        )
+    set_target_properties(
+            CreateParentProcess
+            CreateChildProcess
+            PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test/integration"
+    )
 endif (WIN32)
