@@ -1,6 +1,6 @@
 #include "TinySamIntegrationTestUtils.h"
 
-#if defined(__unix__)
+#if defined(__unix__) || defined(__APPLE__)
 
 std::string TinySamIntegrationTestUtils::runCommand(const std::string& command) {
 
