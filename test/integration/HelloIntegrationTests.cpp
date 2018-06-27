@@ -20,9 +20,11 @@ SCENARIO("Tests can run external programs", "[run_program][hide]") {
             std::ifstream programFile(program.c_str());
 
             THEN("the program is found") {
-                REQUIRE(programFile.good());
                 REQUIRE(programFile.is_open());
+//                REQUIRE(programFile.good());
             }
+
+            programFile.close();
         }
 
         WHEN("the program is run") {
