@@ -16,7 +16,11 @@ add_executable(hello
         src/hello.cpp
         )
 
+add_executable(writeModels
+        src/writeModels.cpp)
+
 set_target_properties(hello
+        writeModels
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/src"
         )
@@ -66,6 +70,7 @@ endif (WIN32)
 
 set(IntegrationTests
         test/integration/HelloIntegrationTests.cpp
+        test/integration/WriteModelsTests.cpp
         )
 
 add_executable(IntegrationTests
