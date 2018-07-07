@@ -64,7 +64,7 @@ if (WIN32)
 else ()
     set(IntegrationTestUtils
             ${IntegrationTestUtils}
-            test/integration/utils/TinySamIntegrationTestUtilsWindows.cpp
+            test/integration/utils/TinySamIntegrationTestUtilsUnix.cpp
             )
 endif (WIN32)
 
@@ -85,7 +85,8 @@ set_target_properties(IntegrationTests
         )
 
 add_dependencies(IntegrationTests
-        hello)
+        hello
+        writeModels)
 
 if (WIN32)
     add_executable(CreateParentProcess

@@ -82,21 +82,14 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
         std::string fileName("cattle-mark-Out-1.txt");
 
-        WHEN("we look for the program") {
-            std::ifstream programFile(program.c_str());
-
-            THEN("the program is found") {
-                REQUIRE(programFile.good());
-                REQUIRE(programFile.is_open());
-            }
-        }
-
-        WHEN("the program is run") {
+        WHEN("the program is run")
+        {
             TinySamIntegrationTestUtils::runCommand(program);
 
             std::ifstream lecteur(fileName.c_str());
 
-            THEN("the output file is found") {
+            THEN("the output file is found")
+            {
                 REQUIRE(lecteur.good());
                 REQUIRE(lecteur.is_open());
             }
@@ -108,14 +101,33 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
                 //std::cout << "Etiquettes: " << results.etiquettes[0]
 
-                THEN("the output file contains the expected text") {
-                    REQUIRE(results.etiquettes.size() == 9);
+                THEN("the header has the expected length") {
+                    CHECK(results.header.size() == 15);
+
+                }
+
+                THEN("the labels have the expected length") {
+                    CHECK(results.etiquettes.size() == 9);
+
+                    for (int i(0); i<9; ++i)
+                    {
+                        CHECK(results.etiquettes[i].size() == 2);
+                    }
+
+                }
+
+                THEN("the results have the expected length") {
+                    CHECK(results.valeurs.size() == 9);
+
+                    for (int i(0); i<9; ++i)
+                    {
+                        CHECK(results.valeurs[i].size() == 13);
+                    }
                 }
             }
 
-            std::cout << "This line was executed!" << std::endl;
             lecteur.close();
-            //std::remove(fileName.c_str());
+            std::remove(fileName.c_str());
 
         }
 
