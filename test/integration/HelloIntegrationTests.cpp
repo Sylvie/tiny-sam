@@ -14,6 +14,7 @@ SCENARIO("Tests can run external programs", "[run_program][hide]") {
 
         std::string fileName("hello.txt");
 
+#if defined(__unix__) || defined(__APPLE__)
         WHEN("we look for the program") {
             std::cout << "Here we are: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
 
@@ -21,11 +22,12 @@ SCENARIO("Tests can run external programs", "[run_program][hide]") {
 
             THEN("the program is found") {
                 REQUIRE(programFile.is_open());
-//                REQUIRE(programFile.good());
+                REQUIRE(programFile.good());
             }
 
             programFile.close();
         }
+#endif
 
         WHEN("the program is run") {
             TinySamIntegrationTestUtils::runCommand(program);
