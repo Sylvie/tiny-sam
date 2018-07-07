@@ -1,6 +1,4 @@
-catch_source_files = \
-	test/main-catch.cpp \
-	test/catch.hpp
+include test/utils/Makefile.mk
 
 include test/unit/Makefile.mk
 

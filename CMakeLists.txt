@@ -8,7 +8,7 @@ add_definitions(
 )
 
 include_directories(src)
-include_directories(test)
+include_directories(test test/utils test/integration/utils)
 
 add_executable(hello
         src/GreetingsProvider.cpp
@@ -26,8 +26,8 @@ set_target_properties(hello
         )
 
 set(CATCH_SRCS
-        test/catch.hpp
-        test/main-catch.cpp
+        test/utils/catch.hpp
+        test/utils/main-catch.cpp
         )
 
 set(FactorialTests
@@ -86,7 +86,8 @@ set_target_properties(IntegrationTests
 
 add_dependencies(IntegrationTests
         hello
-        writeModels)
+        writeModels
+        )
 
 if (WIN32)
     add_executable(CreateParentProcess

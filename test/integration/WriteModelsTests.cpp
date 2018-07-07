@@ -1,9 +1,10 @@
 #include "catch.hpp"
+#include "TinySamIntegrationTestUtils.h"
+
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "utils/TinySamIntegrationTestUtils.h"
 
 class TinySamRegressionResults
 {

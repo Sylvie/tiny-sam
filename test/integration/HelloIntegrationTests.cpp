@@ -1,8 +1,9 @@
 #include "catch.hpp"
+#include "TinySamIntegrationTestUtils.h"
+
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
-#include "utils/TinySamIntegrationTestUtils.h"
 
 SCENARIO("Tests can run external programs", "[run_program][hide]") {
 
