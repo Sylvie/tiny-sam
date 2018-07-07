@@ -5,18 +5,18 @@
 #include <vector>
 #include "utils/TinySamIntegrationTestUtils.h"
 
-class TinySamRegressionResults {
+class TinySamRegressionResults
+{
 public:
     bool hasHeader;
     int nbModels;
     int dimension;
-    std::vector< std::string> header;
-    std::vector< std::vector< std::string> > etiquettes;
-    std::vector< std::vector< long double > > valeurs;
+    std::vector<std::string> header;
+    std::vector<std::vector<std::string> > etiquettes;
+    std::vector<std::vector<long double> > valeurs;
 };
 
-TinySamRegressionResults readModels(std::ifstream& lecteur, bool hasHeader, int dimension)
-{
+TinySamRegressionResults readModels(std::ifstream &lecteur, bool hasHeader, int dimension) {
     TinySamRegressionResults results;
     results.hasHeader = hasHeader;
     results.dimension = dimension;
@@ -26,9 +26,10 @@ TinySamRegressionResults readModels(std::ifstream& lecteur, bool hasHeader, int 
         std::string header("");
         getline(lecteur, header);
 
-        std::istringstream iss( header );
+        std::istringstream iss(header);
         std::string lu;
-        while( iss >> lu >> std::ws ) {
+        while (iss >> lu >> std::ws)
+        {
             results.header.push_back(lu);
         }
 
@@ -39,7 +40,7 @@ TinySamRegressionResults readModels(std::ifstream& lecteur, bool hasHeader, int 
     while (!lecteur.eof())
     {
         std::vector<std::string> ligne(0);
-        for (int i(0); i<=results.dimension; ++i )
+        for (int i(0); i <= results.dimension; ++i)
         {
             std::string lu("");
             lecteur >> lu >> std::ws;
@@ -60,9 +61,10 @@ TinySamRegressionResults readModels(std::ifstream& lecteur, bool hasHeader, int 
         getline(lecteur, concatenatedValues);
 
         std::vector<long double> values(0);
-        std::istringstream iss( concatenatedValues );
+        std::istringstream iss(concatenatedValues);
         long double value;
-        while( iss >> value >> std::ws ) {
+        while (iss >> value >> std::ws)
+        {
             values.push_back(value);
         }
         results.valeurs.push_back(values);
@@ -77,7 +79,8 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
     std::cout << "Starting there: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
 
-    GIVEN("A program to run and its expected output file") {
+    GIVEN("A program to run and its expected output file")
+    {
         std::string program(TinySamIntegrationTestUtils::computePlatformSpecificProgramName("./src/writeModels"));
 
         std::string fileName("cattle-mark-Out-1.txt");
@@ -94,32 +97,32 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
                 REQUIRE(lecteur.is_open());
             }
 
-            AND_WHEN("the file is read") {
+            AND_WHEN("the file is read")
+            {
                 TinySamRegressionResults results(readModels(lecteur, true, 1));
 
-                //std::cout << "Header: " << results.header << endl;
-
-                //std::cout << "Etiquettes: " << results.etiquettes[0]
-
-                THEN("the header has the expected length") {
+                THEN("the header has the expected length")
+                {
                     CHECK(results.header.size() == 15);
 
                 }
 
-                THEN("the labels have the expected length") {
+                THEN("the labels have the expected length")
+                {
                     CHECK(results.etiquettes.size() == 9);
 
-                    for (int i(0); i<9; ++i)
+                    for (int i(0); i < 9; ++i)
                     {
                         CHECK(results.etiquettes[i].size() == 2);
                     }
 
                 }
 
-                THEN("the results have the expected length") {
+                THEN("the results have the expected length")
+                {
                     CHECK(results.valeurs.size() == 9);
 
-                    for (int i(0); i<9; ++i)
+                    for (int i(0); i < 9; ++i)
                     {
                         CHECK(results.valeurs[i].size() == 13);
                     }
@@ -128,10 +131,7 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
             lecteur.close();
             std::remove(fileName.c_str());
-
         }
-
-
     }
 }
 
