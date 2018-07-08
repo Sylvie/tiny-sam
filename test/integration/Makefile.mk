@@ -26,5 +26,7 @@ test_integration_CompareModelsTests_LDADD = \
  		$(top_builddir)/test/integration/utils/libTinySamIntegrationTestUtils.a \
  		$(top_builddir)/test/utils/libTinySamTestUtils.a
 
+EXTRA_DIST += $(top_srcdir)/test/integration/expected-cattle-mark-Out-1.txt
+
 include test/integration/utils/Makefile.mk
 include test/integration/createprocess/Makefile.mk
