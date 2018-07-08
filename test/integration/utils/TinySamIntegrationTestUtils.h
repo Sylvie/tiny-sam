@@ -8,6 +8,7 @@ class TinySamIntegrationTestUtils {
 public:
     static std::string computePlatformSpecificProgramName(const std::string &baseProgramName);
     static std::string runCommand(const std::string &commandLine);
+    static std::string getTopSourceDirectory();
     static TinySamRegressionResults readRegressionResults(std::ifstream& lecteur, bool hasHeader, int dimension);
 };
 

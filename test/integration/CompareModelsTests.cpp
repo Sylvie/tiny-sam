@@ -15,7 +15,7 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
         std::string fileName("cattle-mark-Out-1.txt");
 
-        std::string fileNameExpectedResults("../test/integration/expected-cattle-mark-Out-1.txt");
+        std::string fileNameExpectedResults(TinySamIntegrationTestUtils::getTopSourceDirectory() + "test/integration/expected-cattle-mark-Out-1.txt");
 
         std::ifstream lecteurCorrige(fileNameExpectedResults.c_str());
         REQUIRE(lecteurCorrige.good());

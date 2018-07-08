@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(
         -Dtiny_sam_executable_extension="${CMAKE_EXECUTABLE_SUFFIX}"
+        -Dtiny_sam_top_source_dir="${PROJECT_SOURCE_DIR}"
 )
 
 include_directories(src)

@@ -16,6 +16,16 @@ std::string TinySamIntegrationTestUtils::computePlatformSpecificProgramName(cons
     return programName;
 }
 
+std::string TinySamIntegrationTestUtils::getTopSourceDirectory()
+{
+    std::string topSourceDirectory="..";
+#ifdef tiny_sam_top_source_dir
+    topSourceDirectory = tiny_sam_top_source_dir;
+#endif
+    topSourceDirectory += "/";
+    return topSourceDirectory;
+}
+
 TinySamRegressionResults TinySamIntegrationTestUtils::readRegressionResults(std::ifstream& lecteur, bool hasHeader, int dimension)
 {
     TinySamRegressionResults results;
