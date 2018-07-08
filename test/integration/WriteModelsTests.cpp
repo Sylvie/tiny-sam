@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 
-class TinySamRegressionResults
+class LocalTinySamRegressionResults
 {
 public:
     bool hasHeader;
@@ -17,8 +17,8 @@ public:
     std::vector<std::vector<long double> > valeurs;
 };
 
-TinySamRegressionResults readModels(std::ifstream &lecteur, bool hasHeader, int dimension) {
-    TinySamRegressionResults results;
+LocalTinySamRegressionResults readModels(std::ifstream &lecteur, bool hasHeader, int dimension) {
+    LocalTinySamRegressionResults results;
     results.hasHeader = hasHeader;
     results.dimension = dimension;
 
@@ -76,7 +76,7 @@ TinySamRegressionResults readModels(std::ifstream &lecteur, bool hasHeader, int 
     return results;
 }
 
-SCENARIO("Tests can read and verify models from files", "[read_models]") {
+SCENARIO("Tests can read models from files", "[read_models]") {
 
     std::cout << "Starting there: " << TinySamIntegrationTestUtils::runCommand("pwd") << std::endl;
 
@@ -100,7 +100,7 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
 
             AND_WHEN("the file is read")
             {
-                TinySamRegressionResults results(readModels(lecteur, true, 1));
+                LocalTinySamRegressionResults results(readModels(lecteur, true, 1));
 
                 THEN("the header has the expected length")
                 {

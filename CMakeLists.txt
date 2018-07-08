@@ -30,6 +30,12 @@ set(CATCH_SRCS
         test/utils/main-catch.cpp
         )
 
+set(TestUtils
+        ${CATCH_SRCS}
+        test/utils/TinySamRegressionResults.h
+        test/utils/TinySamRegressionResults.cpp
+        )
+
 set(FactorialTests
         test/unit/factorial.cpp
         )
@@ -71,12 +77,13 @@ endif (WIN32)
 set(IntegrationTests
         test/integration/HelloIntegrationTests.cpp
         test/integration/WriteModelsTests.cpp
+        test/integration/CompareModelsTests.cpp
         )
 
 add_executable(IntegrationTests
         ${IntegrationTests}
         ${IntegrationTestUtils}
-        ${CATCH_SRCS}
+        ${TestUtils}
         )
 
 set_target_properties(IntegrationTests
