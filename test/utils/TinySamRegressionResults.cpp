@@ -44,4 +44,30 @@ void TinySamRegressionResults::verifieTailleHeader(int dimension) const {
 
 void TinySamRegressionResults::compare(const TinySamRegressionResults &autre) const {
 
+    /* Header */
+    int tailleHeader(header.size());
+    CHECKED_IF(tailleHeader == autre.header.size())
+    {
+        for (int i(0); i < tailleHeader; ++i)
+        {
+            CHECK(header[i] == autre.header[i]);
+        }
+    }
+
+    /* Etiquettes */
+    int nombreModeles(etiquettes.size());
+    CHECKED_IF(nombreModeles == autre.etiquettes.size());
+    {
+        for (int i(0); i < nombreModeles; ++i)
+        {
+            int tailleEtiquette(etiquettes[i].size());
+            REQUIRE(tailleEtiquette == autre.etiquettes[i].size());
+
+            for (int j(0); j < tailleEtiquette; ++j)
+            {
+                CHECK(etiquettes[i][j] == autre.etiquettes[i][j]);
+            }
+        }
+    }
+
 }

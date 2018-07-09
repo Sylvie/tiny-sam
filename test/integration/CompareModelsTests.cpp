@@ -43,6 +43,11 @@ SCENARIO("Tests can read and verify models from files", "[read_models]") {
                 {
                     results.verifieTailles(true, 1, 9);
                 }
+
+                AND_THEN("the results match the expectation")
+                {
+                    results.compare(expectedResults);
+                }
             }
 
             lecteur.close();
