@@ -56,18 +56,35 @@ void TinySamRegressionResults::compare(const TinySamRegressionResults &autre) co
 
     /* Etiquettes */
     int nombreModeles(etiquettes.size());
-    CHECKED_IF(nombreModeles == autre.etiquettes.size());
+    CHECKED_IF(nombreModeles == autre.etiquettes.size())
     {
         for (int i(0); i < nombreModeles; ++i)
         {
             int tailleEtiquette(etiquettes[i].size());
-            REQUIRE(tailleEtiquette == autre.etiquettes[i].size());
-
-            for (int j(0); j < tailleEtiquette; ++j)
+            CHECKED_IF(tailleEtiquette == autre.etiquettes[i].size())
             {
-                CHECK(etiquettes[i][j] == autre.etiquettes[i][j]);
+                for (int j(0); j < tailleEtiquette; ++j)
+                {
+                    CHECK(etiquettes[i][j] == autre.etiquettes[i][j]);
+                }
             }
         }
     }
 
+    /* Etiquettes */
+    nombreModeles = valeurs.size();
+    CHECKED_IF(nombreModeles == autre.valeurs.size())
+    {
+        for (int i(0); i < nombreModeles; ++i)
+        {
+            int tailleValeur(valeurs[i].size());
+            CHECKED_IF(tailleValeur == autre.valeurs[i].size())
+            {
+                for (int j(0); j < tailleValeur; ++j)
+                {
+                    CHECK(valeurs[i][j] == Approx(autre.valeurs[i][j]));
+                }
+            }
+        }
+    }
 }
