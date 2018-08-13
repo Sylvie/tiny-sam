@@ -42,6 +42,7 @@ build_script:
 test_script:
   - make check
   - ls -R
+  - make.exe distcheck
 
 #---------------------------------#
 #      artifacts configuration    #
@@ -85,4 +86,3 @@ on_failure:
 # after build failure or success
 #on_finish:
 #- do something
-
