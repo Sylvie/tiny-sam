@@ -42,7 +42,7 @@ build_script:
 test_script:
   - make check
   - ls -R
-#  - make.exe clean distcheck
+  - make.exe clean distcheck
 
 #---------------------------------#
 #      artifacts configuration    #
