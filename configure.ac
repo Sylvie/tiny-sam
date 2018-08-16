@@ -71,6 +71,4 @@ fi
 
 AM_CONDITIONAL([HAVE_LATEXMK], test -n "$LATEXMK")
 
-m4_ifdef([AM_PROG_AR],[AM_PROG_AR])
-
 AC_OUTPUT
