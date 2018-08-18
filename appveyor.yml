@@ -33,6 +33,7 @@ build_script:
   - cd build
   - bash -c "../configure tinysamhostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 LDFLAGS=-static"
   - make.exe
+  - make.exe dist DIST_TARGETS=dist-gzip
   - make.exe binary-archive
 
 #---------------------------------#
@@ -42,7 +43,8 @@ build_script:
 test_script:
   - make check
   - ls -R
-  - make.exe clean distcheck
+  - make.exe clean
+  - make.exe distcheck DIST_TARGETS=dist-gzip
 
 #---------------------------------#
 #      artifacts configuration    #
