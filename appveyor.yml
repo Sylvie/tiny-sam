@@ -2,21 +2,22 @@
 #    environment configuration    #
 #---------------------------------#
 # scripts that are called at very beginning, before repo cloning
-#init:
-#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 # build cache to preserve files/folders between builds
 cache:
-  - C:\ProgramData\chocolatey\bin -> appveyor.yml
-  - C:\ProgramData\chocolatey\lib -> appveyor.yml
-  - C:\Program Files\MiKTeX 2.9 -> appveyor.yml
-  - C:\Users\appveyor\AppData\Roaming\MiKTeX\2.9 -> appveyor.yml
+#  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+#  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+#  - C:\Program Files\MiKTeX 2.9 -> appveyor.yml
+#  - C:\Users\appveyor\AppData\Roaming\MiKTeX\2.9 -> appveyor.yml
 
 # scripts that run after cloning repository
 install:
   - ps: choco install miktex
   - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
-  - ps: initexmf --set-config-value [MPM]AutoInstall=1
+  - ps: initexmf --admin --set-config-value [MPM]AutoInstall=1
+#  - ps: mpm --admin --update
 
 #---------------------------------#
 #       build configuration       #
@@ -32,7 +33,18 @@ build_script:
   - cd build
   - bash -c "../configure tinysamhostsystemname=%PLATFORM% --host=x86_64-w64-mingw32 LDFLAGS=-static"
   - make.exe
+  - make.exe dist DIST_TARGETS=dist-gzip
   - make.exe binary-archive
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+# to run your custom scripts instead of automatic tests
+test_script:
+  - make check
+  - ls -R
+  - make.exe clean
+  - make.exe distcheck DIST_TARGETS=dist-gzip
 
 #---------------------------------#
 #      artifacts configuration    #
@@ -68,10 +80,11 @@ deploy:
 #- do something
 
 # on build failure
-#on_failure:
-#- do something
+on_failure:
+  # We are already in build directory
+  - cat test-suite.log
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 # after build failure or success
 #on_finish:
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
+#- do something

@@ -1,0 +1,5 @@
+if WINDOWS
+noinst_PROGRAMS += test/integration/createprocess/CreateParentProcess test/integration/createprocess/CreateChildProcess
+test_integration_createprocess_CreateParentProcess_SOURCES = test/integration/createprocess/CreateParentProcess.cpp test/integration/createprocess/strsafe.h
+test_integration_createprocess_CreateChildProcess_SOURCES = test/integration/createprocess/CreateChildProcess.cpp test/integration/createprocess/strsafe.h
+endif

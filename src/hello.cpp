@@ -1,8 +1,12 @@
 #include <iostream>
 #include <string>
+#include "GreetingsProvider.hpp"
 
 int main(int argc, char** argv)
 {
-	std::cout << "Hello World!" << std::endl;
+	GreetingsProvider greetingsProvider = GreetingsProvider();
+	std::cout << greetingsProvider.sayHelloWorld() << std::endl;
 	std::cout << "C++ version: " <<  __cplusplus << std::endl;
+	greetingsProvider.writeHelloWorld();
+	return 0;
 }

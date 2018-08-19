@@ -3,12 +3,14 @@ dnl Then run ./configure to generate a Makefile.
 dnl Finally run make to generate the project.
 
 AC_INIT([Tiny Sam], m4_esyscmd([./git-version-gen .tarball-version]), [sylvie.stucki@a3.epfl.ch], [tiny-sam], [lasig.epfl.ch/sambada])
-AM_INIT_AUTOMAKE([foreign subdir-objects dist-zip])
+AM_INIT_AUTOMAKE([foreign subdir-objects dist-zip tar-pax])
 
 tinysam_releasedate=m4_esyscmd([./git-releasedate-gen .tarball-releasedate])
 AC_SUBST(tinysam_releasedate)
 
 AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_RANLIB
 
 AC_CONFIG_FILES([Makefile])
 
@@ -55,6 +57,11 @@ AC_SUBST(system_name)
 AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
 AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
+
+# Pass the system's extension for executable to automake
+tiny_sam_executable_extension=${EXEEXT}
+AC_MSG_NOTICE([tiny_sam_executable_extension = ${tiny_sam_executable_extension}])
+AC_SUBST(tiny_sam_executable_extension)
 
 # Check for presence of latexmk
 AC_CHECK_PROG(LATEXMK, latexmk, latexmk)
