@@ -57,7 +57,7 @@ REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess confi
 
 clean-local: clean-local-src clean-local-test # clean-local-manual
 
-distclean-local: distclean-local-manual
+distclean-local: # distclean-local-manual
 
 repo-clean: maintainer-clean
 	rm -rf $(REPOCLEANFILES)
