@@ -43,7 +43,7 @@ create-archive-folder:
 	mkdir -p $(archive_binaries_basename)
 
 binary-archive: all pdf create-archive-folder
-	$(MAKE) binary-archive-local-manual
+#	$(MAKE) binary-archive-local-manual
 	cp $(bin_PROGRAMS) $(archive_binaries_basename)
 	tar -zcvf $(archive_basename).tar.gz $(archive_basename)
 
