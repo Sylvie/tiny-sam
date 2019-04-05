@@ -29,7 +29,7 @@ include test/Makefile.mk
 
 ## Manual ##
 
-pdf-local: pdf-local-manual
+pdf-local: # pdf-local-manual
 
 include manual/Makefile.mk
 
@@ -55,7 +55,7 @@ DISTCLEANFILES =
 MAINTAINERCLEANFILES =
 REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing test-driver)
 
-clean-local: clean-local-src clean-local-test clean-local-manual
+clean-local: clean-local-src clean-local-test # clean-local-manual
 
 distclean-local: distclean-local-manual
 
