@@ -71,7 +71,8 @@ deploy:
     - build/tiny-sam-${tinysam_version}.tar.gz
     - build/tiny-sam-${tinysam_version}.zip
   skip_cleanup: true
-  draft: true
+  draft: false
+  prerelease: true
   on:
     tags: true
     repo: Sylvie/tiny-sam
