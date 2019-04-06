@@ -3,8 +3,8 @@ manual_directory := "manual/"
 manual_sources := $(top_srcdir)/manual/$(manual_filename) $(top_srcdir)/manual/bibliography.bib
 manual_pdf := $(builddir)/manual/manual.pdf
 
-EXTRA_DIST += $(manual_sources) $(top_srcdir)/manual/latexmkrc_template $(builddir)/manual/latexmkrc
-BUILT_SOURCES += manual/latexmkrc
+#EXTRA_DIST += $(manual_sources) $(top_srcdir)/manual/latexmkrc_template $(builddir)/manual/latexmkrc
+#BUILT_SOURCES += manual/latexmkrc
 
 if HAVE_LATEXMK
 EXTRA_DIST += $(manual_pdf)
