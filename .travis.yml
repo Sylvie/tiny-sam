@@ -13,8 +13,6 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-      install:
-#        - source ./manual/texlive-ubuntu.sh
       cache:
         directories:
           - /tmp/texlive
@@ -27,17 +25,7 @@ matrix:
       compiler: gcc
       env:
         - MATRIX_EVAL="softwareupdate -l && brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
-      install:
-#        - source ./manual/basictex-osx.sh
-#        - ls /usr/local/texlive/
-#        - ls -l /Library/PreferencePanes
-      cache:
-        directories:
-#          - /usr/local/texlive/
-#          - /usr/local/bin/texdist/
-#          - /usr/texbin/
-#          - /Library/TeX/
-#          - /Library/PreferencePanes/
+
 before_install:
     - eval "${MATRIX_EVAL}"
 
@@ -76,4 +64,3 @@ deploy:
   on:
     tags: true
     repo: Sylvie/tiny-sam
-
