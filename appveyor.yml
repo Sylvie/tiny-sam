@@ -14,9 +14,9 @@ cache:
 
 # scripts that run after cloning repository
 install:
-  - ps: choco install miktex
-  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
-  - ps: initexmf --admin --set-config-value [MPM]AutoInstall=1
+#  - ps: choco install miktex
+#  - SET PATH=C:\Program Files\MiKTeX 2.9\miktex\bin\x64;%PATH%
+#  - ps: initexmf --admin --set-config-value [MPM]AutoInstall=1
 #  - ps: mpm --admin --update
 
 #---------------------------------#
@@ -67,7 +67,7 @@ deploy:
       secure: /nU7mUteW5yQE7WTvX8WQmsR2/qhQr5p34xBndoB9YfP1pTTLxjFdem3OAsMexyR
     #artifact: tiny-sam-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.tar.gz
     draft: false
-    prerelease: false
+    prerelease: true
     on:
       appveyor_repo_tag: true       # deploy on tag push only
 

@@ -13,8 +13,6 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-      install:
-        - source ./manual/texlive-ubuntu.sh
       cache:
         directories:
           - /tmp/texlive
@@ -23,21 +21,11 @@ matrix:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - LDFLAGS=-static
     - os: osx
+      osx_image: xcode10.1
       compiler: gcc
       env:
-        - MATRIX_EVAL="softwareupdate -l && sudo softwareupdate -i \"Command Line Tools (macOS High Sierra version 10.13) for Xcode-9.4\"
-          && brew cask uninstall oclint && brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
-      install:
-        - source ./manual/basictex-osx.sh
-        - ls /usr/local/texlive/
-        - ls -l /Library/PreferencePanes
-      cache:
-        directories:
-          - /usr/local/texlive/
-          - /usr/local/bin/texdist/
-          - /usr/texbin/
-          - /Library/TeX/
-          - /Library/PreferencePanes/
+        - MATRIX_EVAL="softwareupdate -l && brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+
 before_install:
     - eval "${MATRIX_EVAL}"
 
@@ -52,10 +40,11 @@ script:
   - ../configure CXXFLAGS="-std=c++11" tinysamhostsystemname=${TRAVIS_OS_NAME}
   - make
   - make check
-  - ls -R
-  - make distcheck CXXFLAGS="-std=c++11"
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then make dist; fi
   - make binary-archive
+  - ls -R
+  - make clean
+  - make distcheck CXXFLAGS="-std=c++11"
   - cd ..
 
 after_failure:
@@ -64,14 +53,14 @@ after_failure:
 deploy:
   provider: releases
   api_key:
-    secure: WWX4xvz3P6JDrRd+OYBAK+rz4K9rmxELgEHi1S5K+EhES3v0msIMkJUGWyqABXOSeRRQYHEaP1ZCspG4W0HiI0tERqzU0Sno/Iu1MfQf4EwpzK8ZGZyiC/LJh2iq1TJBmTzWAz+dGkyJwVBuWAdCI3lezCGnFHYyRQhvxwUCDM+KUSE93AKOD8YxfzXatgi8wCcw5AOIqgJi0GF9wuQTeT7vMjqYLGN6J9L040DOPvIzPUL/z+xQsbGx9cyfzYGm6K7jxPpyTPTp74cdyp4jUX3c/M/UiE7G5AV1SuxIuSsZWLrDgTVPeebvQNrNc2g7xoqIwPDLml6jEWE/g96mRh3uBOCJJxcscw0S0Drspki8zzooJhqp9qDANDvS4JB8ZvQ0keSSJJC9YnJ4DWZGsuP9Pr1qqWGoO86afvAiRtS6MzfVyz/kA3WY/mC4kbD19pgqooFKmnb0OJ/Yb0jWdkMGPUshkZVc3ZH0HUcBgYTVQAS/gyqfGJERrKTS56B+g7CDz3vB3HyR0uUNaVJE0eH9PhHQbKXp7QFqQ7Yjhf/FrquyjCkhubPsjo5UbhIJvh0oSCGu4yaQAAIIqFXfkePVkthum8ZD5GJzLBsfnO4M0oGpCg0eoz+3RRw1XnAmAzVixOeELuimXtrcPVAbvt9O3Rg8toCaG7/9s9Wocn0=
+    secure: l91h9nNvZJ9n0r3Sro2RPA9hl2L5bJmQPwEL49iwdn+4vyJyIxMJRjXDT+4gHgX7+FeIIYy08DPfJDPMstO0mgUGIZo/pupa9xtuxRfOMBLHYyrEFP3MiFuVzHbquvLLXEPtVQfgnMJLMUQgPkcaeUTdk4ZbFpnFd98hUI0jFQRWmsN98Ki/p9ev5F8J9nkDo79ZaxATNLujuzjcCEypzbINqhcF2y1w5RVwoGCi8q6dzhrxcnFSXtu/QO0Iq5KB14K7fVaAplAGMlUGhLPOpDoRtTVC+/IHZgS5A99O1+JZw9RL4Xa1hRY2Fp9KXmzBoSywXbN3zhQz8TYLzGvDrOUkpcRjGyVJ8UnGp/Ki5y9C5GxzQF9AOxeEWzkeG8FgmS0V8Onf5rRzkH7XlZdf8CtcOc0BiYWV1jrVTnqCc68oyqZlgG/R9F9uTcs8W4EbFEEiIhrL9FCXq4E0UHQUVIeBa7793nMrrnFjN4D+shM9dlg+biuGHA2yRBLctKvK/uwTVvReZpNZPaD6bUk0V9pw5/39mQQ7AB38QV5bVJeTQmGeO6wL+CjRX2NcWZSmuY25WOY6casImg2YWGX4WYOew7dNVDbUD2o0NNpVCYVNy69W/2xkjAQi0k4tVc+xM9ZByifvyBwkd2j0DGPXirXILFJk6+Z7goD947pOAPk=
   file:
     - build/tiny-sam-${tinysam_version}-${TRAVIS_OS_NAME}.tar.gz
     - build/tiny-sam-${tinysam_version}.tar.gz
     - build/tiny-sam-${tinysam_version}.zip
   skip_cleanup: true
   draft: false
+  prerelease: true
   on:
     tags: true
     repo: Sylvie/tiny-sam
-

@@ -29,7 +29,7 @@ include test/Makefile.mk
 
 ## Manual ##
 
-pdf-local: pdf-local-manual
+pdf-local: # pdf-local-manual
 
 include manual/Makefile.mk
 
@@ -43,7 +43,7 @@ create-archive-folder:
 	mkdir -p $(archive_binaries_basename)
 
 binary-archive: all pdf create-archive-folder
-	$(MAKE) binary-archive-local-manual
+#	$(MAKE) binary-archive-local-manual
 	cp $(bin_PROGRAMS) $(archive_binaries_basename)
 	tar -zcvf $(archive_basename).tar.gz $(archive_basename)
 
@@ -55,9 +55,9 @@ DISTCLEANFILES =
 MAINTAINERCLEANFILES =
 REPOCLEANFILES = $(addprefix $(srcdir)/, aclocal.m4 configure config.guess config.sub depcomp install-sh Makefile.in missing test-driver)
 
-clean-local: clean-local-src clean-local-test clean-local-manual
+clean-local: clean-local-src clean-local-test # clean-local-manual
 
-distclean-local: distclean-local-manual
+distclean-local: # distclean-local-manual
 
 repo-clean: maintainer-clean
 	rm -rf $(REPOCLEANFILES)
