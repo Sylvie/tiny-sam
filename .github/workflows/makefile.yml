@@ -1,0 +1,36 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: configure
+      run: |
+        mkdir build
+        cd build
+        ../configure CXXFLAGS="-std=c++11"
+
+    - name: Install dependencies
+      run: |
+        cd build
+        make
+
+    - name: Run check
+      run: |
+        cd build
+        make check
+
+    - name: Run distcheck
+      run: |
+        cd build
+        make distcheck
