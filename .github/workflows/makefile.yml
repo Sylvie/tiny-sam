@@ -14,10 +14,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-
     - name: Installing missing package
       run: |
         brew install automake    
+    
+    - name: Checking environment
+      run: |
+      	which gcc
+        gcc -v
+        which g++
+        g++ -v
     
     - name: preconfigure
       run: |
@@ -29,7 +35,7 @@ jobs:
         cd build
         ../configure CXXFLAGS="-std=c++11"
 
-    - name: Install dependencies
+    - name: Compiling
       run: |
         cd build
         make
