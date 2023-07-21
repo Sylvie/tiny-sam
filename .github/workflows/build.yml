@@ -20,7 +20,7 @@ jobs:
     
     - name: Checking environment
       run: |
-      	which gcc
+        which gcc
         gcc -v
         which g++
         g++ -v
